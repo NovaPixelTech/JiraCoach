@@ -45,7 +45,28 @@
       'Search / commands': 'Αναζήτηση / εντολές', 'Local-first · no account': 'Τοπικά στον browser · χωρίς λογαριασμό',
       'Your library': 'Η βιβλιοθήκη σου', 'New example': 'Νέο παράδειγμα', 'Save example': 'Αποθήκευση παραδείγματος',
       'Export': 'Εξαγωγή', 'Import': 'Εισαγωγή', 'Reset': 'Επαναφορά', 'Title': 'Τίτλος', 'Tags': 'Ετικέτες',
-      'Toggle theme': 'Εναλλαγή θέματος'
+      'Toggle theme': 'Εναλλαγή θέματος',
+      "Study streak":"Σερί μελέτης",
+      "Search or jump to.":"Αναζήτηση ή μετάβαση...",
+      "Up next":"Επόμενο",
+      "Toggle theme":"Εναλλαγή θέματος",
+      "Export a backup":"Εξαγωγή αντιγράφου",
+      "Open settings":"Άνοιγμα ρυθμίσεων",
+      "Save a new example":"Αποθήκευση νέου παραδείγματος",
+      "Scaffold a Jira project":"Δημιουργία Jira project",
+      "Check config with the doctor":"Έλεγχος ρυθμίσεων με doctor",
+      "Take the mixed quiz":"Κάνε μικτό quiz",
+      "Start a card review":"Έναρξη επανάληψης καρτών",
+      "Continue studying":"Συνέχιση μελέτης",
+      "Switch dark / light":"Εναλλαγή σκούρου / φωτεινού",
+      "Goals, theme, import/export":"Στόχοι, θέμα, εισαγωγή/εξαγωγή",
+      "Download all local data as JSON":"Λήψη όλων των τοπικών δεδομένων ως JSON",
+      "Your own code plus notes":"Ο δικός σου κώδικας και σημειώσεις",
+      "Generate a workflow, JQL, automation starter":"Δημιουργία workflow, JQL, automation",
+      "Heuristic checks for JQL, workflows, automation":"Έλεγχοι για JQL, workflows, automation",
+      "Questions from every module":"Ερωτήσεις από όλες τις ενότητες",
+      "Spaced repetition due now":"Κάρτες επανάληψης που εκκρεμούν",
+      "Jump back into the curriculum":"Επιστροφή στο πρόγραμμα"
     }
   };
 

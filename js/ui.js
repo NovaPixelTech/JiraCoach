@@ -298,7 +298,7 @@
 
     var upNext = next
       ? '<div class="side-block">' +
-        '<div class="side-block-head"><span>Up next</span><span class="mono">' + p.pct + '%</span></div>' +
+        '<div class="side-block-head"><span>' + t('Up next') + '</span><span class="mono">' + p.pct + '%</span></div>' +
         '<strong>' + esc(next.title) + '</strong>' +
         progress(p.pct, 'sm') +
         '<a class="btn btn-primary btn-sm" href="#/lesson/' + esc(next.id) + '">Continue study</a>' +
@@ -347,11 +347,12 @@
       '</div>' +
       '<div class="topbar-actions">' +
       '<button class="search-trigger" type="button" id="searchBtn" aria-label="Search everything (Ctrl+K)">' +
-      icon('search') + '<span class="st-label">Search or jump to…</span>' +
+      icon('search') + '<span class="st-label">' + t('Search or jump to.') + '</span>' +
       '<span class="kbd-wrap"><kbd>Ctrl</kbd><kbd>K</kbd></span></button>' +
-      '<span class="streak-pill" title="Study streak">' + icon('flame', '') +
-      '<b>' + streak + '</b><span>day' + (streak === 1 ? '' : 's') + '</span></span>' +
-      '<button class="icon-btn" type="button" id="themeBtn" aria-label="Toggle light/dark theme">' + icon(theme) + '</button>' +
+      '<span class="streak-pill" title="' + esc(t('Study streak')) + '">' + icon('flame', '') +
+      '<b>' + streak + '</b><span>' + esc(streak === 1 ? t('day') : t('days')) + '</span></span>' +
+      '<button class="icon-btn lang-btn" type="button" id="langBtn" aria-label="' + esc(t('Language')) + '" title="' + esc(t('Language')) + '">' + esc((st.settings.lang === 'el') ? 'EL' : 'EN') + '</button>' +
+      '<button class="icon-btn" type="button" id="themeBtn" aria-label="' + esc(t('Toggle theme')) + '">' + icon(theme) + '</button>' +
       '<a class="avatar" href="#/settings" title="' + esc(st.profile.name || t('Settings')) + '" aria-label="'+t('Settings')+'">' +
       esc(initials(st.profile.name)) + '</a>' +
       '</div>';
@@ -394,6 +395,13 @@
     if (topbar) topbar.innerHTML = topbarHTML(meta || {});
     var themeBtn = document.getElementById('themeBtn');
     if (themeBtn) themeBtn.addEventListener('click', function () { RC.store.toggleTheme(); });
+    var langBtn = document.getElementById('langBtn');
+    if (langBtn) langBtn.addEventListener('click', function () {
+      var next = RC.store.state.settings.lang === 'el' ? 'en' : 'el';
+      RC.store.setSetting('lang', next);
+      if (RC.app && RC.app.refresh) RC.app.refresh();
+      else location.reload();
+    });
     var menuBtn = document.getElementById('menuBtn');
     if (menuBtn) {
       menuBtn.addEventListener('click', function () {
@@ -566,5 +574,7 @@
     download: download
   };
 })();
+
+
 
 
