@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Jira Coach — i18n (EN/EL)
+   Jira Coach - i18n (EN/EL)
    Technical terms/objects remain in English.
    ========================================================================== */
 (function () {
@@ -42,7 +42,7 @@
       'Mark complete': 'Σήμανση ως ολοκληρωμένο', 'Lesson quiz': 'Quiz μαθήματος', 'Mixed quiz': 'Μικτό quiz',
       'My cards': 'Οι κάρτες μου', 'All caught up': 'Όλα εντάξει', 'No cards due right now.': 'Δεν υπάρχουν εκκρεμείς κάρτες τώρα.',
       'Next question': 'Επόμενη ερώτηση', 'Try again': 'Δοκίμασε ξανά', 'Back to lessons': 'Πίσω στα μαθήματα',
-      'Search / commands': 'Αναζήτηση / εντολές', 'Local-first · no account': 'Τοπικά στον browser · χωρίς λογαριασμό',
+      'Search / commands': 'Αναζήτηση / εντολές', 'Local-first - no account': 'Τοπικά στον browser - χωρίς λογαριασμό',
       'Your library': 'Η βιβλιοθήκη σου', 'New example': 'Νέο παράδειγμα', 'Save example': 'Αποθήκευση παραδείγματος',
       'Export': 'Εξαγωγή', 'Import': 'Εισαγωγή', 'Reset': 'Επαναφορά', 'Title': 'Τίτλος', 'Tags': 'Ετικέτες',
       'Toggle theme': 'Εναλλαγή θέματος',

@@ -1,5 +1,5 @@
 ﻿/* ==========================================================================
-   Jira Coach — views
+   Jira Coach - views
    Every route returns { html, meta, mount }. Mount binds events to the
    already-rendered markup; nothing here re-renders on store changes.
    ========================================================================== */
@@ -58,7 +58,7 @@
   function notFound(message) {
     return {
       html: '<div style="padding-top:40px">' + RC.ui.empty({
-        icon: 'â—‡',
+        icon: '*',
         title: 'Nothing here',
         text: message || 'That page does not exist. Try the dashboard or the command palette.',
         action: '<a class="btn btn-primary" href="#/home" style="margin-top:16px">Back to dashboard</a>'
@@ -114,7 +114,7 @@
       var n = num(a.reviews) + num(a.quizzes) + num(a.lessons);
       var cls = n > 0 ? 'on' : '';
       if (d === today) cls += ' today';
-      return '<i class="' + cls.trim() + '" title="' + attr(d + ' · ' + n + ' activities') + '"></i>';
+      return '<i class="' + cls.trim() + '" title="' + attr(d + ' - ' + n + ' activities') + '"></i>';
     }).join('');
     var weekDays = days.map(function (d) {
       var label = RC.dates.parseKey(d).toLocaleDateString(undefined, { weekday: 'narrow' });
@@ -127,7 +127,7 @@
         '<div class="card-icon" style="width:44px;height:44px;font-size:18px">' + icon('play') + '</div>' +
         '<div class="nc-body"><div class="card-kicker">' + (p.done === p.total ? 'Revisit the weakest area' : t(t('Up next'))) + '</div>' +
         '<div class="nc-title">' + esc(next.title) + '</div>' +
-        '<div class="nc-sub">' + esc(next.moduleTitle) + ' · ' + minutes(next.minutes) + ' · ' + esc(next.summary) + '</div></div>' +
+        '<div class="nc-sub">' + esc(next.moduleTitle) + ' - ' + minutes(next.minutes) + ' - ' + esc(next.summary) + '</div></div>' +
         '<span class="btn btn-primary btn-sm">' + (p.done === p.total ? 'Review' : 'Continue') + '</span></a>';
     }
 
@@ -144,7 +144,7 @@
     var html =
       '<div class="hero">' +
         '<div>' +
-          '<div class="eyebrow">Atlassian Jira · ' + t('Local-first · no account') + '</div>' +
+          '<div class="eyebrow">Atlassian Jira - ' + t('Local-first - no account') + '</div>' +
           '<h1>' + esc(hello) + ' ' + esc(t('Learn Jira from the ground up')) + '</h1>' +
           '<p>Twenty-seven short lessons, spaced-repetition cards, quizzes, a Jira project scaffolder and a place for your own examples. Everything is stored in this browser.</p>' +
           '<div class="page-actions">' +
@@ -158,7 +158,7 @@
           '<div class="grid grid-2">' +
             '<div class="stat"><span class="stat-value">' + streak + '</span><span class="stat-label">day streak</span></div>' +
             '<div class="stat"><span class="stat-value">' + cards.due + '</span><span class="stat-label">cards due</span></div>' +
-            '<div class="stat"><span class="stat-value">' + (p.avgScore == null ? '—' : p.avgScore + '%') + '</span><span class="stat-label">avg quiz</span></div>' +
+            '<div class="stat"><span class="stat-value">' + (p.avgScore == null ? '-' : p.avgScore + '%') + '</span><span class="stat-label">avg quiz</span></div>' +
             '<div class="stat"><span class="stat-value">' + st.examples.length + '</span><span class="stat-label">your examples</span></div>' +
           '</div>' +
         '</div>' +
@@ -167,14 +167,14 @@
       '<div class="dash-grid">' +
         '<div>' +
           '<div class="sec-title">Pick up where you left off <span class="count">' + doneToday + ' activities today</span></div>' +
-          (nextCard || RC.ui.empty({ icon: '✓', title: 'Curriculum complete', text: 'Everything is marked done. Use Practice to keep it fresh.' })) +
+          (nextCard || RC.ui.empty({ icon: 'ok', title: 'Curriculum complete', text: 'Everything is marked done. Use Practice to keep it fresh.' })) +
           '<div class="cont">' +
             '<a class="card card-link" href="#/practice"><div class="card-top"><div class="card-icon">' + icon('cards') + '</div>' +
-              '<div><div class="card-title">Spaced repetition</div><div class="card-sub">' + cards.due + ' cards ready · ' + cards.total + ' in your deck</div></div></div></a>' +
+              '<div><div class="card-title">Spaced repetition</div><div class="card-sub">' + cards.due + ' cards ready - ' + cards.total + ' in your deck</div></div></div></a>' +
             '<a class="card card-link" href="#/lab"><div class="card-top"><div class="card-icon">' + icon('lab') + '</div>' +
               '<div><div class="card-title">Scaffold a project</div><div class="card-sub">Generate Jira project setup, workflow, board, JQL and automation starters</div></div></div></a>' +
             '<a class="card card-link" href="#/examples"><div class="card-top"><div class="card-icon">' + icon('folder') + '</div>' +
-              '<div><div class="card-title">Your examples</div><div class="card-sub">' + (st.examples.length ? st.examples.length + ' saved · turn them into cards' : 'Save your own BO code and notes') + '</div></div></div></a>' +
+              '<div><div class="card-title">Your examples</div><div class="card-sub">' + (st.examples.length ? st.examples.length + ' saved - turn them into cards' : 'Save your own BO code and notes') + '</div></div></div></a>' +
             '<a class="card card-link" href="#/troubleshoot"><div class="card-top"><div class="card-icon">' + icon('lifebuoy') + '</div>' +
               '<div><div class="card-title">Troubleshooting</div><div class="card-sub">' + RC.reference.troubleshooting.length + ' symptoms, causes and fixes</div></div></div></a>' +
           '</div>' +
@@ -198,7 +198,7 @@
         '</div>' +
       '</div>' +
 
-      '<div class="sec-title">The curriculum <span class="count">6 modules · ' + allLessons().length + ' lessons</span></div>' +
+      '<div class="sec-title">The curriculum <span class="count">6 modules - ' + allLessons().length + ' lessons</span></div>' +
       '<div class="grid grid-3">' + moduleCards + '</div>';
 
     return {
@@ -231,7 +231,7 @@
         '<a class="btn btn-ghost" href="#/reference">' + icon('openbook') + ' Reference</a>'
     }) +
       '<div class="panel" style="padding:14px;margin-bottom:22px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">' +
-        '<input class="input" id="learnSearch" type="search" placeholder="Search lessons, tags, summaries…" style="max-width:380px" aria-label="Search lessons">' +
+        '<input class="input" id="learnSearch" type="search" placeholder="Search lessons, tags, summaries..." style="max-width:380px" aria-label="Search lessons">' +
         '<select class="select" id="learnLevel" style="max-width:170px" aria-label="Filter by level">' +
           '<option value="">All levels</option><option value="beginner">Beginner</option>' +
           '<option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select>' +
@@ -289,7 +289,7 @@
           var st = RC.store.state.lessons[l.id] || {};
           var done = !!st.done;
           return '<a class="lesson-row' + (done ? ' done' : '') + '" href="#/lesson/' + attr(l.id) + '">' +
-            '<span class="dot">' + (done ? '✓' : '') + '</span>' +
+            '<span class="dot">' + (done ? 'ok' : '') + '</span>' +
             '<span class="l-main"><span class="l-title">' + esc(pick(l,'title')||l.title) + '</span>' +
               '<span class="l-sub">' + esc(l.summary) + '</span></span>' +
             '<span class="l-right">' +
@@ -332,7 +332,7 @@
     var resources = (lesson.resources || []).length
       ? '<div class="aside-card"><h3>Go deeper</h3><ul class="aside-list">' +
         lesson.resources.map(function (r) {
-          return '<li><a href="' + attr(r.url) + '" target="_blank" rel="noopener">' + esc(r.label) + ' â†—</a></li>';
+          return '<li><a href="' + attr(r.url) + '" target="_blank" rel="noopener">' + esc(r.label) + ' -></a></li>';
         }).join('') + '</ul></div>'
       : '';
 
@@ -340,7 +340,7 @@
       toc +
       '<div class="aside-card"><h3>Study this lesson</h3>' +
         '<div class="kv"><span>Recall cards</span><b>' + cards.length + '</b></div>' +
-        '<div class="kv"><span>Quiz best</span><b>' + (st.quizBest == null ? '—' : st.quizBest + '%') + '</b></div>' +
+        '<div class="kv"><span>Quiz best</span><b>' + (st.quizBest == null ? '-' : st.quizBest + '%') + '</b></div>' +
         '<div class="kv"><span>Visits</span><b>' + (st.visits || 0) + '</b></div>' +
         '<a class="btn btn-primary btn-sm" style="margin-top:11px;width:100%" href="#/practice">Review cards</a>' +
         '<a class="btn btn-sm" style="margin-top:7px;width:100%" href="#/quiz/' + attr(lesson.id) + '">Take the quiz</a>' +
@@ -353,8 +353,8 @@
 
     var prevNext =
       '<div class="lesson-nav">' +
-        (nav.prev ? '<a href="#/lesson/' + attr(nav.prev.id) + '"><span class="dir">â† Previous</span>' + esc(nav.prev.title) + '</a>' : '<span></span>') +
-        (nav.next ? '<a class="next" href="#/lesson/' + attr(nav.next.id) + '"><span class="dir">Next →</span>' + esc(nav.next.title) + '</a>' : '<span></span>') +
+        (nav.prev ? '<a href="#/lesson/' + attr(nav.prev.id) + '"><span class="dir"><- Previous</span>' + esc(nav.prev.title) + '</a>' : '<span></span>') +
+        (nav.next ? '<a class="next" href="#/lesson/' + attr(nav.next.id) + '"><span class="dir">Next -></span>' + esc(nav.next.title) + '</a>' : '<span></span>') +
       '</div>';
 
     var html =
@@ -372,7 +372,7 @@
       '<div class="lesson-layout">' +
         '<div><div class="lesson-body prose">' + rendered.html + '</div>' +
           '<div class="complete-bar"><div class="txt"><b>' + (st.done ? 'You have completed this lesson.' : 'Finished reading?') + '</b>' +
-            '<p>' + (st.done ? 'Nice. Keep it by reviewing the cards, not by re-reading.' : 'Mark it done to track progress — then retrieve it with the cards.') + '</p></div>' +
+            '<p>' + (st.done ? 'Nice. Keep it by reviewing the cards, not by re-reading.' : 'Mark it done to track progress - then retrieve it with the cards.') + '</p></div>' +
             '<button class="btn ' + (st.done ? 'btn-ghost' : 'btn-primary') + '" type="button" id="lessonDone">' +
               (st.done ? 'Undo completion' : 'Mark as complete') + '</button>' +
             '<a class="btn" href="#/quiz/' + attr(lesson.id) + '">' + icon('quiz') + ' Quiz</a>' +
@@ -453,12 +453,12 @@
     }
 
     var target = mix ? 'mix' : lesson.id;
-    var title = mix ? 'Mixed quiz · 12 questions' : 'Quiz · ' + lesson.title;
+    var title = mix ? 'Mixed quiz - 12 questions' : 'Quiz - ' + lesson.title;
 
     var html =
       '<div class="quiz-wrap">' +
         '<div class="practice-top">' +
-          '<a class="btn btn-ghost btn-sm" href="' + (mix ? '#/practice' : '#/lesson/' + attr(lesson.id)) + '">â† Exit quiz</a>' +
+          '<a class="btn btn-ghost btn-sm" href="' + (mix ? '#/practice' : '#/lesson/' + attr(lesson.id)) + '"><- Exit quiz</a>' +
           '<span class="muted tiny">' + esc(mix ? 'Questions from every module' : lesson.moduleTitle) + '</span>' +
           '<span class="spacer"></span><span class="tiny muted" id="quizCounter"></span>' +
         '</div>' +
@@ -530,7 +530,7 @@
               feedback +
             '</div>' +
             '<div class="quiz-foot">' +
-              '<span class="tiny muted">' + (answered ? (idx === questions.length - 1 ? 'Last question — finish when ready.' : 'Ready for the next one?') : 'Pick one answer. Keyboard: 1–4.') + '</span>' +
+              '<span class="tiny muted">' + (answered ? (idx === questions.length - 1 ? 'Last question - finish when ready.' : 'Ready for the next one?') : 'Pick one answer. Keyboard: 1-4.') + '</span>' +
               '<span class="spacer"></span>' +
               (answered ? '<button class="btn btn-primary" type="button" id="quizNext">' + (idx === questions.length - 1 ? 'See result' : t(t('Next question'))) + '</button>' : '') +
             '</div>';
@@ -563,12 +563,12 @@
             recorded = true;
             RC.store.recordQuiz(target, pct);
           }
-          var tone = pct >= 80 ? 'Strong recall.' : pct >= 50 ? 'Close — review the misses.' : 'Re-read, then retry in a day.';
+          var tone = pct >= 80 ? 'Strong recall.' : pct >= 50 ? 'Close - review the misses.' : 'Re-read, then retry in a day.';
           var wrong = questions.map(function (q, i) {
             if (answers[i] === q.answer) return '';
             return '<div class="ref-item" style="margin-top:8px"><div style="padding:12px 14px">' +
               '<div style="font-weight:650;color:var(--text)">' + inline(q.q) + '</div>' +
-              '<div class="tiny" style="margin-top:5px">Your answer: <span style="color:var(--red)">' + inline(q.options[answers[i]] || '—') + '</span> · ' +
+              '<div class="tiny" style="margin-top:5px">Your answer: <span style="color:var(--red)">' + inline(q.options[answers[i]] || '-') + '</span> - ' +
               'Correct: <span style="color:var(--green)">' + inline(q.options[q.answer]) + '</span></div>' +
               '<div class="tiny muted" style="margin-top:4px">' + inline(q.why || '') + '</div>' +
               (mix ? '<div class="tiny" style="margin-top:4px"><a href="#/lesson/' + attr(q.lessonId) + '">' + esc(q.lessonTitle) + '</a></div>' : '') +
@@ -579,14 +579,14 @@
             '<div class="card score-hero">' +
               '<div class="big">' + pct + '<small>%</small></div>' +
               '<h2>' + esc(tone) + '</h2>' +
-              '<p>' + right + ' of ' + questions.length + ' correct' + (mix ? ' · answers saved to your history' : '') + '</p>' +
+              '<p>' + right + ' of ' + questions.length + ' correct' + (mix ? ' - answers saved to your history' : '') + '</p>' +
               '<div class="page-actions" style="justify-content:center">' +
                 '<button class="btn btn-primary" type="button" id="quizRetry">Try again</button>' +
                 '<a class="btn" href="' + (mix ? '#/practice' : '#/lesson/' + attr(lesson.id)) + '">' + (mix ? 'Back to practice' : 'Back to lesson') + '</a>' +
                 '<a class="btn btn-ghost" href="#/learn">Curriculum</a>' +
               '</div>' +
             '</div>' +
-            (wrong ? '<h3 class="sec-title">Review the misses</h3>' + wrong : '<div class="callout tip" style="margin-top:16px"><div class="c-ico">✦</div><div class="c-body"><div class="c-title">Clean sweep</div>Every answer correct. The cards will still resurface this material — retrieval at intervals is what makes it stick.</div></div>');
+            (wrong ? '<h3 class="sec-title">Review the misses</h3>' + wrong : '<div class="callout tip" style="margin-top:16px"><div class="c-ico">✦</div><div class="c-body"><div class="c-title">Clean sweep</div>Every answer correct. The cards will still resurface this material - retrieval at intervals is what makes it stick.</div></div>');
 
           var prog = id('quizProgress');
           if (prog) prog.innerHTML = questions.map(function (q, i) {
@@ -625,7 +625,7 @@
     var html = pageHead({
       eyebrow: 'Practice',
       title: 'Retrieve it before you forget it',
-      sub: 'Due cards first, then new ones within your daily limit. Grade honestly — the schedule adapts to you.',
+      sub: 'Due cards first, then new ones within your daily limit. Grade honestly - the schedule adapts to you.',
       actions: '<a class="btn btn-ghost" href="#/settings">' + icon('gear') + ' Study settings</a>'
     }) +
       tabsHtml('Practice', [
@@ -661,7 +661,7 @@
         '</div>' +
         '<div class="panel">' +
           '<div class="panel-head"><div><h2>Your scores</h2><p>Average across lessons you have quizzed.</p></div></div>' +
-          '<div class="kv"><span>Average best score</span><b>' + (p.avgScore == null ? '—' : p.avgScore + '%') + '</b></div>' +
+          '<div class="kv"><span>Average best score</span><b>' + (p.avgScore == null ? '-' : p.avgScore + '%') + '</b></div>' +
           '<div class="kv"><span>Lessons with a score</span><b>' + p.quizzes + ' / ' + p.total + '</b></div>' +
           '<div class="kv"><span>Quiz attempts</span><b>' + (RC.store.state.quizLog || []).length + '</b></div>' +
         '</div>' +
@@ -672,7 +672,7 @@
           var l = RC.content.lesson(q.lesson);
           var label = l ? l.title : t(t('Mixed quiz'));
           var href = l ? '#/lesson/' + attr(l.id) : '#/quiz/mix';
-          return '<a class="lesson-row" href="' + href + '"><span class="dot" style="color:transparent;border-color:var(--line)">·</span>' +
+          return '<a class="lesson-row" href="' + href + '"><span class="dot" style="color:transparent;border-color:var(--line)">-</span>' +
             '<span class="l-main"><span class="l-title">' + esc(label) + '</span>' +
             '<span class="l-sub">' + RC.ui.fmtDate(q.at) + '</span></span>' +
             '<span class="l-right"><span class="badge ' + (q.pct >= 80 ? 'beginner' : q.pct >= 50 ? 'intermediate' : 'advanced') + '">' + q.pct + '%</span></span></a>';
@@ -693,10 +693,10 @@
     function emptyStage(message, allowAll) {
       var live = RC.store.cardStats();
       var hint = live.fresh > live.due
-        ? 'You have reached today’s new-card limit (' + (RC.store.state.settings.newPerDay || 0) + '). Reviewing existing cards still works; raise the limit in Settings if you want more.'
+        ? 'You have reached today\'s new-card limit (' + (RC.store.state.settings.newPerDay || 0) + '). Reviewing existing cards still works; raise the limit in Settings if you want more.'
         : 'Spaced repetition works best when you stop. Come back when cards are due, or deliberately over-practice below.';
       stage.innerHTML = RC.ui.empty({
-        icon: '✓',
+        icon: 'ok',
         title: message || 'Nothing due right now',
         text: hint,
         action: '<div class="page-actions" style="justify-content:center">' +
@@ -716,7 +716,7 @@
     function renderCard() {
       if (!queue.length || idx >= queue.length) {
         RC.views.flashKey = null;
-        emptyStage(reviewed ? 'Session complete — ' + reviewed + ' ' + plural(reviewed, 'review') : 'Nothing due right now', true);
+        emptyStage(reviewed ? 'Session complete - ' + reviewed + ' ' + plural(reviewed, 'review') : 'Nothing due right now', true);
         RC.ui.setShell('practice', { crumbs: [{ label: 'Practice' }] });
         return;
       }
@@ -730,7 +730,7 @@
 
       stage.innerHTML =
         '<div class="flash-meter"><span>Card ' + (idx + 1) + ' of ' + queue.length + '</span>' +
-          '<span class="spacer"></span><span>' + reviewed + ' reviewed · ' + live.due + ' due today</span></div>' +
+          '<span class="spacer"></span><span>' + reviewed + ' reviewed - ' + live.due + ' due today</span></div>' +
         '<div class="progress" style="margin-bottom:16px"><i style="width:' + Math.round((idx / queue.length) * 100) + '%"></i></div>' +
         '<div class="flash-card" id="flashCard">' +
           '<div class="flash-tags">' + source + tags + '</div>' +
@@ -757,7 +757,7 @@
         var h = id('flashHint');
         if (a) a.hidden = false;
         if (g) g.hidden = false;
-        if (h) h.innerHTML = 'How did that feel? <kbd>1</kbd> again · <kbd>2</kbd> hard · <kbd>3</kbd> good · <kbd>4</kbd> easy';
+        if (h) h.innerHTML = 'How did that feel? <kbd>1</kbd> again - <kbd>2</kbd> hard - <kbd>3</kbd> good - <kbd>4</kbd> easy';
         RC.views.flashKey = function (key) { grade(Number(key)); };
       }
 
@@ -872,7 +872,7 @@
       var tags = id('cardTags').value.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
       var err = id('cardError');
       if (!front) { err.textContent = 'The front needs a question or prompt.'; return; }
-      if (!back) { err.textContent = 'Add an answer — even a short one.'; return; }
+      if (!back) { err.textContent = 'Add an answer - even a short one.'; return; }
       if (editId) {
         RC.store.updateCustomCard(editId, { front: front, back: back, tags: tags });
         RC.ui.toast('Card updated');
@@ -1020,7 +1020,7 @@
     }).join('\n\n');
     out.innerHTML =
       '<div class="panel">' +
-        '<div class="panel-head"><div><h2>Generated artifacts</h2><p>' + esc(result.base) + ' · ' + esc(result.table) +
+        '<div class="panel-head"><div><h2>Generated artifacts</h2><p>' + esc(result.base) + ' - ' + esc(result.table) +
           (result.names.childZi ? ' + ' + esc(result.childBase) : '') + '</p></div>' +
           '<span class="spacer"></span><button class="btn btn-sm copy-all" type="button" id="genCopyAll">Copy all</button>' +
           '<button class="btn btn-sm" type="button" id="genDownload">Download</button></div>' +
@@ -1065,7 +1065,7 @@
               '<button class="btn btn-sm" type="button" data-sample="1">JQL</button></div>' +
           '</div>' +
         '</div>' +
-        '<div id="lintOut">' + RC.ui.empty({ icon: 'âš•', title: t('Nothing checked yet'), text: 'Paste Jira config, then run the doctor. It is heuristic — it catches common mistakes, not everything.' }) + '</div>' +
+        '<div id="lintOut">' + RC.ui.empty({ icon: '?', title: t('Nothing checked yet'), text: 'Paste Jira config, then run the doctor. It is heuristic - it catches common mistakes, not everything.' }) + '</div>' +
       '</div>';
 
     var src = id('lintSrc');
@@ -1075,13 +1075,13 @@
       var code = src.value;
       RC.views.doctorSrc = code;
       if (!code.trim()) {
-        out.innerHTML = RC.ui.empty({ icon: 'âš•', title: t('Paste some config first'), text: 'The doctor needs workflow text, JQL, an automation rule, or permission notes.' });
+        out.innerHTML = RC.ui.empty({ icon: '?', title: t('Paste some config first'), text: 'The doctor needs workflow text, JQL, an automation rule, or permission notes.' });
         return;
       }
       var results = RC.code.lint(code);
-      var icons = { ok: '✓', warn: '!', bad: '×', info: 'i' };
+      var icons = { ok: 'ok', warn: '!', bad: 'x', info: 'i' };
       out.innerHTML = '<div class="panel"><div class="panel-head"><div><h2>Findings</h2><p>' +
-        results.length + ' ' + plural(results.length, 'check') + ' · ' + results.filter(function (r) { return r.level === 'bad'; }).length + ' blocking</p></div></div>' +
+        results.length + ' ' + plural(results.length, 'check') + ' - ' + results.filter(function (r) { return r.level === 'bad'; }).length + ' blocking</p></div></div>' +
         '<ul class="lint-list">' + results.map(function (r) {
           return '<li class="' + attr(r.level) + '"><span class="li-ico">' + icons[r.level] + '</span><span>' + inline(r.text) + '</span></li>';
         }).join('') + '</ul>' +
@@ -1113,11 +1113,11 @@
     var html = pageHead({
       eyebrow: 'Your library',
       title: 'Your own examples',
-      sub: 'Drop in the code you write at work. Add a note explaining why it works — that note becomes a recall card.',
+      sub: 'Drop in the code you write at work. Add a note explaining why it works - that note becomes a recall card.',
       actions: '<a class="btn btn-primary" href="#/examples/new">' + icon('plus') + ' New example</a>'
     }) +
       '<div class="panel" style="padding:14px;margin-bottom:20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">' +
-        '<input class="input" id="exSearch" type="search" placeholder="Filter by title, tag or note…" style="max-width:380px" aria-label="Filter examples">' +
+        '<input class="input" id="exSearch" type="search" placeholder="Filter by title, tag or note..." style="max-width:380px" aria-label="Filter examples">' +
         '<span class="spacer"></span><span class="tiny muted" id="exCount"></span>' +
       '</div>' +
       '<div id="exList"></div>';
@@ -1147,9 +1147,9 @@
               var l = ex.lessonId ? RC.content.lesson(ex.lessonId) : null;
               var preview = String(ex.code || '').split('\n').slice(0, 3).join('\n');
               return '<a class="card card-link" href="#/examples/' + attr(ex.id) + '">' +
-                '<div class="card-kicker">' + (l ? esc(l.moduleTitle) : 'My example') + ' · ' + esc(RC.ui.fmtDate(ex.updatedAt)) + '</div>' +
+                '<div class="card-kicker">' + (l ? esc(l.moduleTitle) : 'My example') + ' - ' + esc(RC.ui.fmtDate(ex.updatedAt)) + '</div>' +
                 '<div class="card-title">' + esc(ex.title) + '</div>' +
-                '<div class="card-sub">' + (ex.notes ? esc(ex.notes.slice(0, 130)) + (ex.notes.length > 130 ? '…' : '') : 'No note yet — add one when you edit.') + '</div>' +
+                '<div class="card-sub">' + (ex.notes ? esc(ex.notes.slice(0, 130)) + (ex.notes.length > 130 ? '...' : '') : 'No note yet - add one when you edit.') + '</div>' +
                 (preview ? '<pre class="code" style="margin:11px 0 0;border:1px solid var(--line);border-radius:8px;font-size:11px;max-height:76px;overflow:hidden">' + esc(preview) + '</pre>' : '') +
                 '<div class="tag-row">' + (ex.tags || []).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
                 '</a>';
@@ -1172,10 +1172,10 @@
     var html = pageHead({
       eyebrow: 'My example',
       title: ex.title,
-      sub: l ? 'Linked to “' + l.title + '”.' : 'Standalone example.',
+      sub: l ? 'Linked to \'' + l.title + '\'.' : 'Standalone example.',
       actions: '<a class="btn" href="#/examples/' + attr(ex.id) + '/edit">' + icon('edit') + ' Edit</a>' +
         '<button class="btn btn-danger" type="button" id="exDelete">' + icon('trash') + ' Delete</button>' +
-        '<a class="btn btn-ghost" href="#/examples">â† All examples</a>'
+        '<a class="btn btn-ghost" href="#/examples"><- All examples</a>'
     }) +
       '<div class="lesson-layout">' +
         '<div>' +
@@ -1226,12 +1226,12 @@
     if (exId && !existing) return notFound('That example no longer exists.');
     var lessonOpts = '<option value="">No lesson</option>' + allLessons().map(function (l) {
       var sel = existing && existing.lessonId === l.id ? ' selected' : '';
-      return '<option value="' + attr(l.id) + '"' + sel + '>' + esc(l.moduleTitle + ' · ' + l.title) + '</option>';
+      return '<option value="' + attr(l.id) + '"' + sel + '>' + esc(l.moduleTitle + ' - ' + l.title) + '</option>';
     }).join('');
 
     var html = pageHead({
       eyebrow: existing ? 'Edit example' : 'New example',
-      title: existing ? 'Edit “' + existing.title + '”' : 'Save a new example',
+      title: existing ? 'Edit \'' + existing.title + '\'' : 'Save a new example',
       sub: 'Code plus a note in your own words. The note is the recall answer; without it the card is much weaker.',
       actions: '<a class="btn btn-ghost" href="' + (existing ? '#/examples/' + attr(existing.id) : '#/examples') + '">Cancel</a>'
     }) +
@@ -1243,7 +1243,7 @@
           '<div class="field"><label for="exLesson">Linked lesson</label><select class="select" id="exLesson">' + lessonOpts + '</select></div>' +
           '<div class="field full"><label for="exCode">Code</label>' +
             '<textarea class="textarea mono" id="exCode" style="min-height:300px" placeholder="managed implementation in class zbp_i_travel unique;&#10;strict ( 2 );&#10;...">' + esc(existing ? existing.code : '') + '</textarea></div>' +
-          '<div class="field full"><label for="exNotes">Why it works — your note</label>' +
+          '<div class="field full"><label for="exNotes">Why it works - your note</label>' +
             '<textarea class="textarea" id="exNotes" style="min-height:120px" placeholder="What problem does this solve? Which statements matter? What would you change next time?">' + esc(existing ? existing.notes : '') + '</textarea>' +
             '<div class="hint">This note becomes the back of an automatic recall card.</div></div>' +
           '<div class="field full"><label class="check"><input type="checkbox" id="exCard"' + (!existing || existing.makeCard !== false ? ' checked' : '') + '> Create a recall card from this example</label></div>' +
@@ -1269,7 +1269,7 @@
           var makeCard = id('exCard').checked;
           var err = id('exError');
           if (!title) { err.textContent = 'Give the example a title so you can find it later.'; id('exTitle').focus(); return; }
-          if (!code.trim()) { err.textContent = 'Paste at least a few lines of code — that is the example.'; id('exCode').focus(); return; }
+          if (!code.trim()) { err.textContent = 'Paste at least a few lines of code - that is the example.'; id('exCode').focus(); return; }
 
           var data = { title: title, code: code, notes: notes, tags: tags, lessonId: lessonId, makeCard: makeCard };
           var saved;
@@ -1310,7 +1310,7 @@
     }) +
       tabsHtml('Reference', tabs, tab) +
       '<div class="panel" style="padding:12px;margin-bottom:16px;display:flex;gap:10px;align-items:center">' +
-        '<input class="input" id="refSearch" type="search" placeholder="Filter this tab…" style="max-width:340px" aria-label="Filter reference">' +
+        '<input class="input" id="refSearch" type="search" placeholder="Filter this tab..." style="max-width:340px" aria-label="Filter reference">' +
         '<span class="spacer"></span><span class="tiny muted" id="refCount"></span>' +
       '</div>' +
       '<div id="refBody"></div>';
@@ -1325,7 +1325,7 @@
           var q = (search.value || '').toLowerCase().trim();
           var res = renderReferenceTab(tab, q);
           id('refBody').innerHTML = res.html;
-          id('refCount').textContent = res.count + ' ' + plural(res.count, 'entry', 'entries') + (q ? ' matching “' + q + '”' : '');
+          id('refCount').textContent = res.count + ' ' + plural(res.count, 'entry', 'entries') + (q ? ' matching \'' + q + '\'' : '');
         }
         search.addEventListener('input', draw);
         draw();
@@ -1393,7 +1393,7 @@
       count = res.length;
       html = '<div class="grid grid-2">' + res.map(function (r) {
         return '<a class="card card-link" href="' + attr(r.url) + '" target="_blank" rel="noopener">' +
-          '<div class="card-kicker">External</div><div class="card-title">' + esc(r.label) + ' â†—</div>' +
+          '<div class="card-kicker">External</div><div class="card-title">' + esc(r.label) + ' -></div>' +
           '<div class="card-sub">' + inline(r.note) + '</div></a>';
       }).join('') + '</div>';
     }
@@ -1409,12 +1409,12 @@
     var data = RC.reference.troubleshooting;
     var html = pageHead({
       eyebrow: 'Troubleshooting',
-      title: 'Symptom → cause → fix',
+      title: 'Symptom -> cause -> fix',
       sub: 'The twenty issues that consume the most Jira time, with the smallest fix that actually works.',
       actions: '<a class="btn btn-ghost" href="#/reference">' + icon('openbook') + ' Reference</a>'
     }) +
       '<div class="panel" style="padding:12px;margin-bottom:18px;display:flex;gap:10px;align-items:center">' +
-        '<input class="input" id="tsSearch" type="search" placeholder="Search symptom, error text, tool or fix…" style="max-width:460px" aria-label="Search troubleshooting">' +
+        '<input class="input" id="tsSearch" type="search" placeholder="Search symptom, error text, tool or fix..." style="max-width:460px" aria-label="Search troubleshooting">' +
         '<span class="spacer"></span><span class="tiny muted" id="tsCount"></span>' +
       '</div>' +
       '<div id="tsList"></div>';
@@ -1464,7 +1464,7 @@
       eyebrow: t('Settings'),
       title: 'Make the coach yours',
       sub: t('Everything lives in this browser. Export a backup before clearing site data or switching machines.'),
-      actions: '<a class="btn btn-ghost" href="#/home">â† Dashboard</a>'
+      actions: '<a class="btn btn-ghost" href="#/home"><- Dashboard</a>'
     }) +
       '<div class="grid grid-2">' +
         '<div class="panel">' +
@@ -1487,8 +1487,8 @@
           '<div class="hr-label">Keyboard</div>' +
           '<div class="kv"><span>Command palette</span><b>Ctrl / âŒ˜ + K</b></div>' +
           '<div class="kv"><span>Reveal flashcard</span><b>Space</b></div>' +
-          '<div class="kv"><span>Grade flashcard</span><b>1 – 4</b></div>' +
-          '<div class="kv"><span>Answer quiz option</span><b>1 – 4</b></div>' +
+          '<div class="kv"><span>Grade flashcard</span><b>1 - 4</b></div>' +
+          '<div class="kv"><span>Answer quiz option</span><b>1 - 4</b></div>' +
           '<div class="kv"><span>Next quiz question</span><b>Enter</b></div>' +
           '<div class="kv"><span>Close overlays</span><b>Esc</b></div>' +
         '</div>' +
@@ -1498,7 +1498,7 @@
         '<div class="panel">' +
           '<div class="panel-head"><div><h2>Your stats</h2><p>Stored locally under <span class="mono">jiracoach.v1</span>.</p></div></div>' +
           '<div class="kv"><span>Lessons complete</span><b>' + p.done + ' / ' + p.total + ' (' + p.pct + '%)</b></div>' +
-          '<div class="kv"><span>Average quiz best</span><b>' + (p.avgScore == null ? '—' : p.avgScore + '%') + '</b></div>' +
+          '<div class="kv"><span>Average quiz best</span><b>' + (p.avgScore == null ? '-' : p.avgScore + '%') + '</b></div>' +
           '<div class="kv"><span>Cards in deck</span><b>' + cs.total + '</b></div>' +
           '<div class="kv"><span>Due now</span><b>' + cs.due + '</b></div>' +
           '<div class="kv"><span>Scheduled later</span><b>' + cs.later + '</b></div>' +
@@ -1509,7 +1509,7 @@
         '</div>' +
         '<div class="panel">' +
           '<div class="panel-head"><div><h2>Backup & restore</h2><p>One JSON file holds everything.</p></div></div>' +
-          '<p class="tiny muted">Export before clearing browser data. Import merges over the current state — it replaces progress, cards and examples with the backup.</p>' +
+          '<p class="tiny muted">Export before clearing browser data. Import merges over the current state - it replaces progress, cards and examples with the backup.</p>' +
           '<div class="form-actions">' +
             '<button class="btn btn-primary" type="button" id="btnExport">' + icon('down') + ' Export JSON</button>' +
             '<button class="btn" type="button" id="btnImport">' + icon('up') + ' Import JSON</button>' +
@@ -1527,7 +1527,7 @@
       '<div class="panel" style="margin-top:14px">' +
         '<div class="panel-head"><div><h2>About this coach</h2></div></div>' +
         '<p class="tiny muted">Jira Coach is a zero-install trainer: a static site with no accounts, no server and no tracking. It covers Atlassian Jira with 27 lessons, 6 modules, ' +
-        allLessons().reduce(function (n, l) { return n + (l.keyPoints || []).length; }, 0) + ' recall cards, quizzes, a scaffolder and a personal example library. Content is a study aid — always verify against your Jira plan and the official Atlassian documentation.</p>' +
+        allLessons().reduce(function (n, l) { return n + (l.keyPoints || []).length; }, 0) + ' recall cards, quizzes, a scaffolder and a personal example library. Content is a study aid - always verify against your Jira plan and the official Atlassian documentation.</p>' +
         '<div class="tag-row" style="margin-top:10px"><span class="tag">offline</span><span class="tag">localStorage</span><span class="tag">no build step</span><span class="tag">27 lessons</span></div>' +
       '</div>';
 
@@ -1613,7 +1613,7 @@
         id('btnResetAll').addEventListener('click', function () {
           RC.ui.confirm({
             title: 'Erase everything?',
-            message: 'This removes progress, cards, examples, notes and settings from this browser. It cannot be undone — export a backup first if you might want it.',
+            message: 'This removes progress, cards, examples, notes and settings from this browser. It cannot be undone - export a backup first if you might want it.',
             confirmLabel: 'Erase everything',
             danger: true
           }).then(function (ok) {

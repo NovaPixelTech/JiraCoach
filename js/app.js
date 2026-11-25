@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Jira Coach — app
+   Jira Coach - app
    Boot, routing, palette source, global keyboard and copy handling.
    ========================================================================== */
 (function () {
@@ -33,7 +33,7 @@
     RC.content.lessons.forEach(function (l) {
       items.push({
         kind: 'Lesson', title: l.title, tag: l.level || 'lesson', icon: '§',
-        sub: l.moduleTitle + ' · ' + l.minutes + ' min',
+        sub: l.moduleTitle + ' - ' + l.minutes + ' min',
         keywords: [l.summary, (l.tags || []).join(' '), l.moduleTitle].join(' '),
         run: function () { RC.ui.go('lesson/' + l.id); }
       });
@@ -42,7 +42,7 @@
     RC.store.state.examples.forEach(function (ex) {
       items.push({
         kind: 'Example', title: ex.title, tag: 'mine', icon: '✎',
-        sub: (ex.tags || []).join(' · ') || 'My example',
+        sub: (ex.tags || []).join(', ') || 'My example',
         keywords: (ex.tags || []).join(' ') + ' ' + (ex.notes || ''),
         run: function () { RC.ui.go('examples/' + ex.id); }
       });
@@ -66,7 +66,7 @@
 
     RC.reference.glossary.forEach(function (g) {
       items.push({
-        kind: 'Glossary', title: g.term, tag: 'term', icon: '?',
+        kind: 'Glossary', title: g.term, tag: 'term', icon: 'book',
         sub: g.def.slice(0, 110), keywords: g.def,
         run: function () { RC.views.referenceTab = 'glossary'; RC.ui.go('reference'); }
       });
@@ -131,8 +131,8 @@
     RC.ui.setShell(currentMeta.active, { crumbs: currentMeta.crumbs });
 
     document.title = (currentMeta.title && currentMeta.title !== 'Jira Coach'
-      ? currentMeta.title + ' · Jira Coach'
-      : 'Jira Coach — Learn Atlassian Jira');
+      ? currentMeta.title + ' - Jira Coach'
+      : 'Jira Coach - Learn Atlassian Jira');
 
     if (typeof out.mount === 'function' && inner) {
       try { out.mount(inner); }
@@ -273,7 +273,7 @@
       var editing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (e.target && e.target.isContentEditable);
       var route = RC.ui.currentRoute || RC.ui.route();
 
-      /* quiz: 1–4 answers, Enter next */
+      /* quiz: 1-4 answers, Enter next */
       if (!editing && route.name === 'quiz') {
         if (/^[1-4]$/.test(key)) {
           var opts = document.querySelectorAll('#quizBody .option');
@@ -292,7 +292,7 @@
         }
       }
 
-      /* flashcards: Space reveals, 1–4 grade */
+      /* flashcards: Space reveals, 1-4 grade */
       if (!editing && route.name === 'practice' && RC.views.practiceTab === 'cards' && typeof RC.views.flashKey === 'function') {
         if (key === ' ' || key === 'Spacebar') {
           if (tag !== 'BUTTON' && tag !== 'A') { e.preventDefault(); RC.views.flashKey('space'); }

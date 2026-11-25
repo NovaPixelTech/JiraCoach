@@ -1,5 +1,5 @@
 /* ==========================================================================
-   RAP Coach — styles
+   Jira Coach - styles
    Design tokens, layout, components. No external dependencies.
    ========================================================================== */
 
@@ -650,7 +650,7 @@ textarea.mono, input.mono { font-family: var(--mono); font-size: 12.5px; }
   display: flex; align-items: center; gap: 9px; list-style: none;
 }
 .ref-item summary::-webkit-details-marker { display: none; }
-.ref-item summary::before { content: "›"; color: var(--accent); font-size: 16px; transition: transform .12s; }
+.ref-item summary::before { content: ">"; color: var(--accent); font-size: 16px; transition: transform .12s; }
 .ref-item[open] summary::before { transform: rotate(90deg); }
 .ref-item .ref-body { padding: 0 14px 14px 32px; font-size: 13.5px; color: var(--muted); line-height: 1.65; }
 .ref-item .ref-body code { font-family: var(--mono); font-size: 12px; color: var(--text); }

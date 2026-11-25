@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Jira Coach — store
+   Jira Coach - store
    Local-first state: progress, spaced repetition, examples, streaks.
    ========================================================================== */
 (function () {
@@ -256,8 +256,8 @@
       if (ex.makeCard === false) return;
       out.push({
         id: 'ex:' + ex.id,
-        front: 'Recall your example: “' + ex.title + '”\n\nExplain its structure, key statements, and why it works.',
-        back: ex.notes || 'No notes yet. Open the example, read it, then write a 2–3 sentence explanation in Notes — that is your answer.',
+        front: 'Recall your example: "' + ex.title + '"\n\nExplain its structure, key statements, and why it works.',
+        back: ex.notes || 'No notes yet. Open the example, read it, then write a 2-3 sentence explanation in Notes - that is your answer.',
         tags: (ex.tags || []).concat(['my example']),
         kind: 'example', exampleId: ex.id
       });

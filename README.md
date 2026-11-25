@@ -29,9 +29,9 @@ The app is plain static HTML, CSS and JavaScript, so GitHub Pages can host it di
 - **Live site:** https://novapixeltech.github.io/JiraCoach/
 - **Repository:** https://github.com/NovaPixelTech/JiraCoach
 - **Pipeline:** every push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), uploads the repository as a Pages artifact and publishes it.
-- **Pages source:** Settings → Pages → Build and deployment → Source: **GitHub Actions**.
+- **Pages source:** Settings -> Pages -> Build and deployment -> Source: **GitHub Actions**.
 - **Base path:** all asset URLs are relative, so the site works correctly under the `/JiraCoach/` project path.
-- **Manual deploy:** Actions → **Deploy to GitHub Pages** → **Run workflow**.
+- **Manual deploy:** Actions -> **Deploy to GitHub Pages** -> **Run workflow**.
 
 To publish changes, commit and push to `main`:
 
@@ -60,12 +60,12 @@ git push origin main
 
 ### Curriculum
 
-1. **Foundations** — what Jira is, work items, projects, issue types, and the end-to-end workflow.
-2. **Work items & fields** — issue types, fields, screens, priorities, labels, components, and versions.
-3. **Workflows** — statuses, transitions, conditions, validators, post functions, and board mapping.
-4. **Boards & JQL** — Scrum/Kanban boards, filters, JQL queries, dashboards, and reports.
-5. **Advanced** — automation, permissions, notifications, apps/integrations, and administration at scale.
-6. **Practice** — project setup, troubleshooting, governance, and review checklists.
+1. **Foundations** - what Jira is, work items, projects, issue types, and the end-to-end workflow.
+2. **Work items & fields** - issue types, fields, screens, priorities, labels, components, and versions.
+3. **Workflows** - statuses, transitions, conditions, validators, post functions, and board mapping.
+4. **Boards & JQL** - Scrum/Kanban boards, filters, JQL queries, dashboards, and reports.
+5. **Advanced** - automation, permissions, notifications, apps/integrations, and administration at scale.
+6. **Practice** - project setup, troubleshooting, governance, and review checklists.
 
 ### Jira project scaffolder
 
@@ -92,9 +92,9 @@ Paste workflow, JQL, or automation text and get heuristic findings: missing tran
 | `↑` / `↓` | Move in palette |
 | `Enter` | Open selection / next quiz question |
 | `Esc` | Close palette, modal or mobile nav |
-| `1`–`4` | Answer a quiz question |
+| `1`-`4` | Answer a quiz question |
 | `Space` | Reveal the flashcard |
-| `1`–`4` | Grade a revealed card (Again / Hard / Good / Easy) |
+| `1`-`4` | Grade a revealed card (Again / Hard / Good / Easy) |
 
 ---
 
@@ -102,8 +102,8 @@ Paste workflow, JQL, or automation text and get heuristic findings: missing tran
 
 - Stored in `localStorage` under the key **`jiracoach.v1`**.
 - Nothing is uploaded anywhere. There is no telemetry and no network call.
-- **Settings → Export** downloads a JSON snapshot. **Import** restores one. Export before clearing the browser profile.
-- **Settings → Reset** clears progress and personal content after a confirmation.
+- **Settings -> Export** downloads a JSON snapshot. **Import** restores one. Export before clearing the browser profile.
+- **Settings -> Reset** clears progress and personal content after a confirmation.
 
 ---
 
@@ -118,7 +118,7 @@ js/code.js              Syntax highlighting, generator, linter, copy registry
 js/ui.js                Shell, markdown-lite renderer, palette, modal, toast
 js/views.js             One function per route
 js/app.js               Boot, hash routing, global keys, palette sources
-js/content/01-foundations.js … 06-practice.js
+js/content/01-foundations.js ... 06-practice.js
                         Course modules and lessons (data only)
 ```
 

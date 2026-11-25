@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Jira Coach — code utilities
+   Jira Coach - code utilities
    A small text/JQL highlighter, a Jira setup generator, and a heuristic linter.
    ========================================================================== */
 (function () {
