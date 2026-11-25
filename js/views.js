@@ -821,8 +821,8 @@
               ? '<div class="grid">' + cards.map(function (c) {
                 var info = RC.store.cardInfo('uc:' + c.id);
                 return '<div class="card">' +
-                  '<div class="card-top"><div style="min-width:0;flex:1"><div class="card-title" style="white-space:pre-line">' + inline(c.front) + '</div>' +
-                    '<div class="card-sub" style="white-space:pre-line">' + inline(c.back) + '</div></div>' +
+                  '<div class="card-top"><div style="min-width:0;flex:1"><div class="card-title" style="white-space:pre-line">' + inline(pick(c,'front')||c.front) + '</div>' +
+                    '<div class="card-sub" style="white-space:pre-line">' + inline(pick(c,'back')||c.back) + '</div></div>' +
                     '<span class="badge ' + (info.status === 'due' ? 'accent' : '') + '">' + esc(info.status === 'due' ? 'due' : info.status === 'later' ? 'scheduled' : 'new') + '</span>' +
                   '</div>' +
                   '<div class="tag-row">' + (c.tags || []).map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
