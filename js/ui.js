@@ -151,7 +151,7 @@
           break;
         }
         case 'steps': {
-          html += '<div class="steps">' + (s.items || []).map(function (it, i) {
+          html += '<div class="steps">' + items.map(function (it, i) {
             return '<div class="step"><div class="step-num">' + (i + 1) + '</div>' +
               '<div><div class="step-title">' + inline(it.title) + '</div>' +
               '<div class="step-body">' + inline(it.body) + '</div></div></div>';
@@ -162,7 +162,7 @@
           html += '<div class="compare">' + [s.left, s.right].map(function (col) {
             if (!col) return '';
             return '<div class="compare-col"><h4>' + inline(col.title) + '</h4><ul>' +
-              (col.items || []).map(function (x) { return '<li>' + inline(x) + '</li>'; }).join('') +
+              (pick(col,'items')||col.items||[]).map(function (x) { return '<li>' + inline(typeof x==='string'?x:(pick(x,'text')||x.text||x)) + '</li>'; }).join('') +
               '</ul></div>';
           }).join('') + '</div>';
           break;

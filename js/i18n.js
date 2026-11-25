@@ -66,7 +66,31 @@
       "Heuristic checks for JQL, workflows, automation":"Έλεγχοι για JQL, workflows, automation",
       "Questions from every module":"Ερωτήσεις από όλες τις ενότητες",
       "Spaced repetition due now":"Κάρτες επανάληψης που εκκρεμούν",
-      "Jump back into the curriculum":"Επιστροφή στο πρόγραμμα"
+      "Jump back into the curriculum":"Επιστροφή στο πρόγραμμα",
+      "Your answer":"Η απάντησή σου",
+      "correct":"σωστές",
+      "answers saved to your history":"οι απαντήσεις αποθηκεύτηκαν στο ιστορικό σου",
+      "Review the misses":"Επανέλασε όσα έχασες",
+      "No misses.":"Κανένα λάθος.",
+      "Practice hub":"Κέντρο εξάσκησης",
+      "Back to lesson":"Πίσω στο μάθημα",
+      "Quiz result":"Αποτέλεσμα quiz",
+      "Correct answer":"Σωστή απάντηση",
+      "Not quite":"Όχι ακριβώς",
+      "Last question - finish when ready.":"Τελευταία ερώτηση - ολοκλήρωσε όταν είσαι έτοιμος/η.",
+      "Ready for the next one?":"Έτοιμος/η για την επόμενη;",
+      "Pick one answer. Keyboard: 1-4.":"Επίλεξε μία απάντηση. Πληκτρολόγιο: 1-4.",
+      "See result":"Δες αποτέλεσμα",
+      "Move on, or retake it later to prove it stuck.":"Συνέχισε ή ξανακάνε το αργότερα για να το εμπεδώσεις.",
+      "My example":"Το παράδειγμά μου",
+      "No quiz yet":"Δεν υπάρχει quiz ακόμα",
+      "This lesson has no quiz questions. Try the mixed quiz instead.":"Αυτό το μάθημα δεν έχει ακόμη ερωτήσεις quiz. Δοκίμασε το μικτό quiz.",
+      "Mixed quiz - 12 questions":"Μικτό quiz - 12 ερωτήσεις",
+      "Take quiz":"Κάνε quiz",
+      "Lesson":"Μάθημα",
+      "Lessons":"Μαθήματα",
+      "minutes":"λεπτά",
+      "min":"λεπτά"
     }
   };
 

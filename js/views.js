@@ -127,7 +127,7 @@
         '<div class="card-icon" style="width:44px;height:44px;font-size:18px">' + icon('play') + '</div>' +
         '<div class="nc-body"><div class="card-kicker">' + (p.done === p.total ? 'Revisit the weakest area' : t(t('Up next'))) + '</div>' +
         '<div class="nc-title">' + esc(next.title) + '</div>' +
-        '<div class="nc-sub">' + esc(next.moduleTitle) + ' - ' + minutes(next.minutes) + ' - ' + esc(next.summary) + '</div></div>' +
+        '<div class="nc-sub">' + esc(pick(RC.content.module(next.moduleId),'title')||next.moduleTitle) + ' - ' + minutes(next.minutes) + ' - ' + esc(next.summary) + '</div></div>' +
         '<span class="btn btn-primary btn-sm">' + (p.done === p.total ? 'Review' : 'Continue') + '</span></a>';
     }
 
@@ -359,7 +359,7 @@
 
     var html =
       '<div class="lesson-head">' +
-        '<div class="eyebrow"><a href="#/learn">' + esc(lesson.moduleTitle) + '</a></div>' +
+        '<div class="eyebrow"><a href="#/learn">' + esc(pick(RC.content.module(lesson.moduleId),'title')||lesson.moduleTitle) + '</a></div>' +
         '<h1>' + esc(pick(lesson,'title')||lesson.title) + '</h1>' +
         '<div class="lesson-meta">' +
           levelBadge(lesson.level) +
@@ -386,7 +386,7 @@
       html: html,
       meta: meta('learn', lesson.title, [
         { label: 'Learn', href: '#/learn' },
-        { label: lesson.moduleTitle || mod.title, href: '#/learn' },
+        { label: pick(mod,'title')||lesson.moduleTitle || mod.title, href: '#/learn' },
         { label: lesson.title }
       ]),
       mount: function (root) {
@@ -459,7 +459,7 @@
       '<div class="quiz-wrap">' +
         '<div class="practice-top">' +
           '<a class="btn btn-ghost btn-sm" href="' + (mix ? '#/practice' : '#/lesson/' + attr(lesson.id)) + '"><- Exit quiz</a>' +
-          '<span class="muted tiny">' + esc(mix ? 'Questions from every module' : lesson.moduleTitle) + '</span>' +
+          '<span class="muted tiny">' + esc(mix ? t('Questions from every module') : (pick(RC.content.module(lesson.moduleId),'title')||lesson.moduleTitle)) + '</span>' +
           '<span class="spacer"></span><span class="tiny muted" id="quizCounter"></span>' +
         '</div>' +
         '<div class="quiz-progress" id="quizProgress"></div>' +
@@ -579,7 +579,7 @@
             '<div class="card score-hero">' +
               '<div class="big">' + pct + '<small>%</small></div>' +
               '<h2>' + esc(tone) + '</h2>' +
-              '<p>' + right + ' of ' + questions.length + ' correct' + (mix ? ' - answers saved to your history' : '') + '</p>' +
+              '<p>' + right + ' ' + t('of') + ' ' + questions.length + ' ' + t('correct') + (mix ? ' - ' + t('answers saved to your history') : '') + '</p>' +
               '<div class="page-actions" style="justify-content:center">' +
                 '<button class="btn btn-primary" type="button" id="quizRetry">Try again</button>' +
                 '<a class="btn" href="' + (mix ? '#/practice' : '#/lesson/' + attr(lesson.id)) + '">' + (mix ? 'Back to practice' : 'Back to lesson') + '</a>' +
@@ -1226,7 +1226,7 @@
     if (exId && !existing) return notFound('That example no longer exists.');
     var lessonOpts = '<option value="">No lesson</option>' + allLessons().map(function (l) {
       var sel = existing && existing.lessonId === l.id ? ' selected' : '';
-      return '<option value="' + attr(l.id) + '"' + sel + '>' + esc(l.moduleTitle + ' - ' + l.title) + '</option>';
+      return '<option value="' + attr(l.id) + '"' + sel + '>' + esc((pick(RC.content.module(l.moduleId),'title')||l.moduleTitle) + ' - ' + (pick(l,'title')||l.title)) + '</option>';
     }).join('');
 
     var html = pageHead({

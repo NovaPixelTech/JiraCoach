@@ -10,13 +10,13 @@
     { id:'issue-types-deep', title:'Issue types in practice', level:'beginner', minutes:10, summary:'Pick issue types that match how work is planned, executed, and reported.', tags:['issue-types','fields'],
       sections:[
         {t:'p',cls:'lead',text:'Issue types are not labels; they shape workflow, fields, boards, and reports. Choose types that represent meaningfully different kinds of work.', text_el: 'Issue types are not labels; they shape workflow, πεδία, boards, and αναφορές. Choose types that represent meaningfully different kinds of work.'},
-        {t:'table',head:['Type','Use when','Avoid when'],rows:[
+        {t:'table',head: ['Type','Use when','Avoid when'], head_el: ['Type', 'Χρησιμοποίησε when', 'Avoid when'],rows: [
           ['Story','User-visible value or feature slice','It is an operational task with no user value'],
           ['Task','General work item','You need bug/incident-specific fields'],
           ['Bug','Something expected is broken','It is a new feature request'],
           ['Epic','Container for related work','It is small enough to complete as one item'],
           ['Subtask','Small child step of a parent issue','It should be tracked/planned independently']
-        ]},
+        ], rows_el: [['Story', 'User-visible value or feature slice', 'It is an operational task with no χρήστης value'], ['Task', 'General work item', 'You need bug/incident-specific πεδία'], ['Bug', 'Something expected is broken', 'It is a νέο feature request'], ['Epic', 'Container for related work', 'It is small enough to complete as one item'], ['Subtask', 'Small child βήμα of a parent issue', 'It πρέπει να είναι tracked/planned independently']]},
         {t:'callout',tone:'tip',title:'Rule',text:'If two issue types use the same workflow, fields, and reports, you probably only need one.', text_el: 'If two issue types χρησιμοποίησε the same workflow, πεδία, and αναφορές, you probably only need one.'}
       ],
       keyPoints:[
@@ -25,7 +25,7 @@
         {front:'When should you avoid creating a new issue type?', front_el: 'Πότε πρέπει να you απέφυγε creating a new issue type?',back:'When it does not require different workflow, fields, or reporting from an existing type.', back_el: 'Πότε it does not require different workflow, πεδία, or reporting from an existing type.'}
       ],
       quiz:[
-        {q:'What is the best reason to create a new issue type?', q_el: 'Τι είναι the best reason to δημιούργησε a new issue type?',options:['It needs different workflow/fields/reporting','You like a new icon','It has a long description','Someone asked once'],answer:0,why:'Issue types should represent meaningful process differences.', why_el: 'Issue types πρέπει να represent meaningful process differences.'},
+        {q:'What is the best reason to create a new issue type?', q_el: 'Τι είναι the best reason to δημιούργησε a new issue type?',options: ['It needs different workflow/fields/reporting','You like a new icon','It has a long description','Someone asked once'], options_el: ['It needs different workflow/πεδία/reporting', 'You like a νέο icon', 'It has a long περιγραφή', 'Someone asked once'],answer:0,why:'Issue types should represent meaningful process differences.', why_el: 'Issue types πρέπει να represent meaningful process differences.'},
         {q:'A small step inside a story that does not need independent planning is best modeled as?',options:['Subtask','Epic','Project','Dashboard'],answer:0,why:'Subtasks are child steps within a parent issue.'},
         {q:'A feature request reported by a customer is usually not a?',options:['Bug','Story','Task','Request'],answer:0,why:'A feature request is new value, not broken existing behavior.'}
       ]
@@ -33,7 +33,7 @@
     { id:'fields-practical', title:'Fields that support decisions', level:'beginner', minutes:10, summary:'Use fields to capture decision-ready information at the right time.', summary_el: 'Χρησιμοποίησε πεδία to capture decision-ready information at το σωστό time.', tags:['fields','screens'],
       sections:[
         {t:'p',cls:'lead',text:'A field should exist because someone makes a decision with it: triage, planning, execution, or reporting.', text_el: 'A πεδίο πρέπει να exist because someone makes a decision with it: triage, planning, execution, or reporting.'},
-        {t:'list',items:['**Required at create:** only what is needed to understand/triage the work.','**Filled during refinement:** acceptance criteria, estimate, dependencies.','**Filled at close:** resolution, root cause, release version if relevant.']},
+        {t:'list',items: ['**Required at create:** only what is needed to understand/triage the work.','**Filled during refinement:** acceptance criteria, estimate, dependencies.','**Filled at close:** resolution, root cause, release version if relevant.'], items_el: ['**Required at create:** only what is needed to κατανόησε/triage the work.', '**Filled κατά τη διάρκεια refinement:** acceptance criteria, estimate, dependencies.', '**Filled at close:** resolution, root αιτία, release version if relevant.']},
         {t:'code',lang:'text',title:'Field timing example',code:`Create: Summary, Issue Type, Description, Priority
 Refine: Assignee, Story Points, Components, Acceptance Criteria
 Resolve: Resolution, Fix Version, Root Cause`},
@@ -45,19 +45,19 @@ Resolve: Resolution, Fix Version, Root Cause`},
         {front:'What is a good practice for field lifecycle?', front_el: 'Τι είναι a good practice for πεδίο lifecycle?',back:'Capture information at the stage where it becomes relevant: create, refine, or close.', back_el: 'Capture information at the stage where it becomes relevant: δημιούργησε, refine, or close.'}
       ],
       quiz:[
-        {q:'Which field timing is best?', q_el: 'Which πεδίο timing is best?',options:['Capture data when it is needed','Require all possible data at creation','Never require fields','Only fill fields at close'],answer:0,why:'Data should be captured at the point it supports a decision.', why_el: 'Data πρέπει να be captured at the point it supports a decision.'},
-        {q:'What should every custom field have?', q_el: 'What πρέπει να every custom πεδίο have?',options:['An owner and purpose','A random name','A dashboard','A subtask'],answer:0,why:'Ownership and purpose prevent field sprawl.', why_el: 'Ownership and purpose prevent πεδίο sprawl.'},
-        {q:'A quarterly reporting field needed only at close should usually be?', q_el: 'A quarterly reporting πεδίο needed only at close πρέπει να usually be?',options:['Required/filled at close or transition','Required on create screen','Hidden from everyone','Stored in labels only'],answer:0,why:'Ask for data when it becomes relevant.', why_el: 'Ask for data πότε it becomes relevant.'}
+        {q:'Which field timing is best?', q_el: 'Which πεδίο timing is best?',options: ['Capture data when it is needed','Require all possible data at creation','Never require fields','Only fill fields at close'], options_el: ['Capture data when it is needed', 'Require όλα possible data at creation', 'Never require πεδία', 'Only fill πεδία at close'],answer:0,why:'Data should be captured at the point it supports a decision.', why_el: 'Data πρέπει να be captured at the point it supports a decision.'},
+        {q:'What should every custom field have?', q_el: 'What πρέπει να every custom πεδίο have?',options: ['An owner and purpose','A random name','A dashboard','A subtask'], options_el: ['An owner and purpose', 'A random όνομα', 'A dashboard', 'A subtask'],answer:0,why:'Ownership and purpose prevent field sprawl.', why_el: 'Ownership and purpose prevent πεδίο sprawl.'},
+        {q:'A quarterly reporting field needed only at close should usually be?', q_el: 'A quarterly reporting πεδίο needed only at close πρέπει να usually be?',options: ['Required/filled at close or transition','Required on create screen','Hidden from everyone','Stored in labels only'], options_el: ['Required/filled at close or transition', 'Required on create οθόνη', 'Hidden from everyone', 'Stored in labels only'],answer:0,why:'Ask for data when it becomes relevant.', why_el: 'Ask for data πότε it becomes relevant.'}
       ]
     },
     { id:'screens-schemes', title:'Screens and schemes', level:'intermediate', minutes:11, summary:'Control where fields appear using screens and schemes without overcomplicating projects.', summary_el: 'Control where πεδία appear using οθόνες and schemes without overcomplicating projects.', tags:['screens','schemes'],
       sections:[
         {t:'p',cls:'lead',text:'Screens show fields. Screen schemes map screens to operations. Issue type screen schemes can vary screens by issue type. Keep it simple unless there is a real need.', text_el: 'Screens show πεδία. Screen schemes map οθόνες to operations. Issue type οθόνη schemes μπορεί να vary οθόνες by issue type. Keep it simple unless there is a real need.'},
-        {t:'table',head:['Artifact','Purpose','Example'],rows:[
+        {t:'table',head: ['Artifact','Purpose','Example'], head_el: ['Artifact', 'Purpose', 'Παράδειγμα'],rows: [
           ['Screen','Collection of fields shown to user','Create Bug screen'],
           ['Screen scheme','Maps create/edit/view to screens','Default screen for create/edit/view'],
           ['Issue type screen scheme','Maps issue types to screen schemes','Bug uses Bug Screen Scheme']
-        ]},
+        ], rows_el: [['Screen', 'Collection of πεδία shown to χρήστης', 'Create Bug οθόνη'], ['Screen scheme', 'Maps create/edit/προβολή to οθόνες', 'Default οθόνη for create/edit/προβολή'], ['Issue type οθόνη scheme', 'Maps issue τύποι to οθόνη schemes', 'Bug uses Bug Screen Scheme']]},
         {t:'callout',tone:'tip',title:'Keep create simple',text:'Use a lightweight create screen and richer view/edit screens. Users abandon long create forms.', text_el: 'Χρησιμοποίησε a lightweight δημιούργησε οθόνη and richer view/edit οθόνες. Users abandon long δημιούργησε forms.'}
       ],
       keyPoints:[
@@ -67,8 +67,8 @@ Resolve: Resolution, Fix Version, Root Cause`},
       ],
       quiz:[
         {q:'Which artifact maps create/edit/view operations to screens?', q_el: 'Which artifact maps δημιούργησε/edit/view operations to οθόνες?',options:['Screen scheme','Workflow','Board','JQL filter'],answer:0,why:'Screen schemes assign screens to operations.', why_el: 'Screen schemes assign οθόνες to operations.'},
-        {q:'When should issue types have different screens?', q_el: 'Πότε πρέπει να issue types have different οθόνες?',options:['When they need different fields/process data','Always','Never','Only for subtasks'],answer:0,why:'Use variation only when it supports real differences.', why_el: 'Χρησιμοποίησε variation only πότε it supports real differences.'},
-        {q:'A good create screen is usually?', q_el: 'A good δημιούργησε οθόνη is usually?',options:['Short and decision-focused','As complete as possible','Only custom fields','Read-only'],answer:0,why:'Short create screens reduce friction.', why_el: 'Short δημιούργησε οθόνες reduce friction.'}
+        {q:'When should issue types have different screens?', q_el: 'Πότε πρέπει να issue types have different οθόνες?',options: ['When they need different fields/process data','Always','Never','Only for subtasks'], options_el: ['When they need different πεδία/process data', 'Always', 'Never', 'Only for subtasks'],answer:0,why:'Use variation only when it supports real differences.', why_el: 'Χρησιμοποίησε variation only πότε it supports real differences.'},
+        {q:'A good create screen is usually?', q_el: 'A good δημιούργησε οθόνη is usually?',options: ['Short and decision-focused','As complete as possible','Only custom fields','Read-only'], options_el: ['Short and decision-focused', 'As complete as possible', 'Only custom πεδία', 'Read-only'],answer:0,why:'Short create screens reduce friction.', why_el: 'Short δημιούργησε οθόνες reduce friction.'}
       ]
     },
     { id:'priorities-labels', title:'Priorities, labels, components, and versions', level:'beginner', minutes:10, summary:'Use lightweight categorization carefully so filters and reports stay meaningful.', summary_el: 'Χρησιμοποίησε lightweight categorization carefully so filters and αναφορές stay meaningful.', tags:['labels','components','versions'],
@@ -88,7 +88,7 @@ Resolve: Resolution, Fix Version, Root Cause`},
         {front:'What do fix versions support?',back:'Release planning, tracking what shipped, and release reporting.'}
       ],
       quiz:[
-        {q:'Which field is best for release tracking?', q_el: 'Which πεδίο is best for release tracking?',options:['Fix version','Label color','Avatar','Workflow name'],answer:0,why:'Fix versions are designed for release planning and tracking.'},
+        {q:'Which field is best for release tracking?', q_el: 'Which πεδίο is best for release tracking?',options: ['Fix version','Label color','Avatar','Workflow name'], options_el: ['Fix version', 'Label color', 'Avatar', 'Workflow όνομα'],answer:0,why:'Fix versions are designed for release planning and tracking.'},
         {q:'What causes priority inflation?',options:['Unclear priority definitions','Using components','Creating epics','Writing JQL'],answer:0,why:'Without clear definitions, teams overuse high priorities.', why_el: 'Without clear definitions, ομάδες overuse high priorities.'},
         {q:'Labels are risky because they are?',options:['Free-form and easy to duplicate inconsistently','Encrypted','Required by Jira','Only for admins'],answer:0,why:'Labels need conventions to avoid sprawl.', why_el: 'Labels need conventions to απέφυγε sprawl.'}
       ]
@@ -108,8 +108,8 @@ STORY-45 relates to EPIC-7`},
       ],
       quiz:[
         {q:'Which link type most directly affects sequencing?',options:['Blocks/is blocked by','Relates to','Mentions','Watches'],answer:0,why:'Blocking links indicate dependency and sequencing risk.'},
-        {q:'Issue links should be used when?', q_el: 'Issue links πρέπει να be used πότε?',options:['The relationship supports a decision or understanding','On every issue by default','Only for subtasks','To replace assignees'],answer:0,why:'Links should carry meaning.', why_el: 'Links πρέπει να carry meaning.'},
-        {q:'A duplicate bug should usually be?', q_el: 'A duplicate bug πρέπει να usually be?',options:['Linked as duplicate and handled per team process','Deleted silently','Converted to epic','Ignored'],answer:0,why:'Duplicate links preserve context while avoiding parallel tracking.'}
+        {q:'Issue links should be used when?', q_el: 'Issue links πρέπει να be used πότε?',options: ['The relationship supports a decision or understanding','On every issue by default','Only for subtasks','To replace assignees'], options_el: ['The relationship supports a decision or understanding', 'On κάθε issue by default', 'Only for subtasks', 'To replace assignees'],answer:0,why:'Links should carry meaning.', why_el: 'Links πρέπει να carry meaning.'},
+        {q:'A duplicate bug should usually be?', q_el: 'A duplicate bug πρέπει να usually be?',options: ['Linked as duplicate and handled per team process','Deleted silently','Converted to epic','Ignored'], options_el: ['Linked as duplicate and handled per ομάδα process', 'Deleted silently', 'Converted to epic', 'Ignored'],answer:0,why:'Duplicate links preserve context while avoiding parallel tracking.'}
       ]
     }
   ]

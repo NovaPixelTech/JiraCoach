@@ -14,11 +14,11 @@
 Condition: Issue type is Bug
 Action: Comment "Bug resolved. Please verify in next release."
 Action: Send Slack message to #qa-alerts`},
-        {t:'table',head:['Part','Purpose','Example'],rows:[
+        {t:'table',head: ['Part','Purpose','Example'], head_el: ['Part', 'Purpose', 'Παράδειγμα'],rows: [
           ['Trigger','What starts the rule','Issue created, field changed, scheduled'],
           ['Condition','When rule should continue','If issue type = Bug'],
           ['Action','What Jira does','Edit issue, comment, transition, send web request']
-        ]},
+        ], rows_el: [['Trigger', 'What starts the rule', 'Issue created, πεδίο changed, scheduled'], ['Condition', 'When rule πρέπει να continue', 'If issue τύπος = Bug'], ['Action', 'What Jira does', 'Edit issue, comment, transition, send web request']]},
         {t:'callout',tone:'danger',title:'Avoid automation loops',text:'A rule that transitions an issue can trigger another rule that transitions it back. Use specific conditions, audit logs, and naming/ownership.', text_el: 'A rule that transitions an issue μπορεί να trigger another rule that transitions it back. Χρησιμοποίησε specific conditions, audit logs, and naming/ownership.'}
       ],
       keyPoints:[
@@ -29,18 +29,18 @@ Action: Send Slack message to #qa-alerts`},
       quiz:[
         {q:'Which part determines when an automation rule starts?', q_el: 'Which part determines πότε an automation rule starts?',options:['Trigger','Condition','Action','Dashboard'],answer:0,why:'Triggers start automation rules.'},
         {q:'A rule that keeps re-triggering itself is called?',options:['Automation loop','Sprint','JQL filter','Epic'],answer:0,why:'Loops happen when rules trigger each other or themselves.', why_el: 'Loops happen πότε rules trigger each other or themselves.'},
-        {q:'Good automation should be?', q_el: 'Good automation πρέπει να be?',options:['Narrow, documented, and owned','Hidden and complex','Applied to every project by default','Without conditions'],answer:0,why:'Maintainability and safety matter.'}
+        {q:'Good automation should be?', q_el: 'Good automation πρέπει να be?',options: ['Narrow, documented, and owned','Hidden and complex','Applied to every project by default','Without conditions'], options_el: ['Narrow, documented, and owned', 'Hidden and πολύπλοκο', 'Applied to κάθε project by default', 'Without conditions'],answer:0,why:'Maintainability and safety matter.'}
       ]
     },
     { id:'permissions-basics', title:'Permissions and access', level:'intermediate', minutes:11, summary:'Control who can browse, create, edit, transition, and administer work.', summary_el: 'Control who μπορεί να browse, δημιούργησε, edit, transition, and administer work.', tags:['permissions','security'],
       sections:[
         {t:'p',cls:'lead',text:'Jira permissions answer: who can see or do what? Use groups/roles and schemes consistently; avoid granting permissions to individuals ad hoc.', text_el: 'Jira permissions answer: who μπορεί να see or do what? Χρησιμοποίησε groups/roles and schemes consistently; απέφυγε granting permissions to individuals ad hoc.'},
-        {t:'table',head:['Concept','Purpose','Example'],rows:[
+        {t:'table',head: ['Concept','Purpose','Example'], head_el: ['Concept', 'Purpose', 'Παράδειγμα'],rows: [
           ['Permission scheme','Project permissions set','Browse Projects, Create Issues'],
           ['Project role','Role mapped to users/groups','Administrators, Developers'],
           ['Issue security level','Restrict specific issues','HR-only issue visibility'],
           ['Global permission','Site-wide capability','Administer Jira']
-        ]},
+        ], rows_el: [['Permission scheme', 'Project permissions set', 'Browse Projects, Create Issues'], ['Project role', 'Role mapped to χρήστες/groups', 'Administrators, Developers'], ['Issue security level', 'Restrict specific issues', 'HR-only issue visibility'], ['Global permission', 'Site-wide capability', 'Administer Jira']]},
         {t:'callout',tone:'warn',title:'Least privilege',text:'Give users the minimum access they need. Overly broad admin permissions create accidental configuration damage.', text_el: 'Give χρήστες the minimum access they need. Overly broad admin permissions δημιούργησε accidental configuration damage.'}
       ],
       keyPoints:[
@@ -50,14 +50,14 @@ Action: Send Slack message to #qa-alerts`},
       ],
       quiz:[
         {q:'Which feature restricts visibility of specific issues?',options:['Issue security level','Sprint goal','Label','Quick filter'],answer:0,why:'Issue security levels control issue visibility.'},
-        {q:'Best practice for granting permissions is?', q_el: 'Καλής πρακτική for granting permissions is?',options:['Use groups/roles and least privilege','Grant everyone admin','Assign permissions per issue manually','Avoid schemes'],answer:0,why:'Role/group-based least privilege is maintainable and safer.'},
+        {q:'Best practice for granting permissions is?', q_el: 'Καλής πρακτική for granting permissions is?',options: ['Use groups/roles and least privilege','Grant everyone admin','Assign permissions per issue manually','Avoid schemes'], options_el: ['Χρησιμοποίησε groups/roles and least privilege', 'Grant everyone admin', 'Assign permissions per issue manually', 'Avoid schemes'],answer:0,why:'Role/group-based least privilege is maintainable and safer.'},
         {q:'A permission scheme is applied to?',options:['Projects','Individual comments','Dashboards only','Attachments'],answer:0,why:'Permission schemes define project permissions.'}
       ]
     },
     { id:'notifications-integrations', title:'Notifications, integrations, and apps', level:'intermediate', minutes:10, summary:'Send the right signals to the right people and systems.', summary_el: 'Send το σωστό signals to το σωστό people and systems.', tags:['notifications','integrations'],
       sections:[
         {t:'p',cls:'lead',text:'Notifications keep people informed, but too many create noise. Integrations connect Jira to Slack, Git, CI/CD, docs, and service tools.', text_el: 'Notifications keep people informed, but too many δημιούργησε noise. Integrations connect Jira to Slack, Git, CI/CD, docs, and service tools.'},
-        {t:'list',items:['Use notification schemes thoughtfully; avoid emailing everyone on every change.','Integrate commits/PRs/deployments for traceability.','Use automation/webhooks for system-to-system updates.','Evaluate apps for security, maintenance, and ownership before installing.']},
+        {t:'list',items: ['Use notification schemes thoughtfully; avoid emailing everyone on every change.','Integrate commits/PRs/deployments for traceability.','Use automation/webhooks for system-to-system updates.','Evaluate apps for security, maintenance, and ownership before installing.'], items_el: ['Χρησιμοποίησε notification schemes thoughtfully; avoid emailing everyone on κάθε change.', 'Integrate commits/PRs/deployments for traceability.', 'Χρησιμοποίησε automation/webhooks for system-to-system updates.', 'Evaluate apps for security, maintenance, and ownership πριν installing.']},
         {t:'callout',tone:'tip',title:'Signal over noise',text:'If users ignore Jira emails, the notification design has failed. Notify on actionable events.', text_el: 'If χρήστες ignore Jira emails, the notification design has failed. Notify on actionable events.'}
       ],
       keyPoints:[
@@ -66,15 +66,15 @@ Action: Send Slack message to #qa-alerts`},
         {front:'What should you evaluate before installing a Jira app?', front_el: 'What πρέπει να you evaluate πριν installing a Jira app?',back:'Security, maintenance, cost, ownership, and whether native Jira features already solve the need.'}
       ],
       quiz:[
-        {q:'What is a good notification principle?', q_el: 'Τι είναι a good notification principle?',options:['Notify on actionable events','Email everyone for every comment','Disable all notifications','Only notify admins'],answer:0,why:'Actionable signals are more effective than noise.'},
-        {q:'Why connect Jira to Git/CI?', q_el: 'Γιατί connect Jira to Git/CI?',options:['For traceability across delivery lifecycle','To replace issue types','To remove workflows','To disable boards'],answer:0,why:'Integrations link work items to development and deployment artifacts.'},
+        {q:'What is a good notification principle?', q_el: 'Τι είναι a good notification principle?',options: ['Notify on actionable events','Email everyone for every comment','Disable all notifications','Only notify admins'], options_el: ['Notify on actionable events', 'Email everyone for κάθε comment', 'Disable όλα notifications', 'Only notify admins'],answer:0,why:'Actionable signals are more effective than noise.'},
+        {q:'Why connect Jira to Git/CI?', q_el: 'Γιατί connect Jira to Git/CI?',options: ['For traceability across delivery lifecycle','To replace issue types','To remove workflows','To disable boards'], options_el: ['For traceability across delivery lifecycle', 'To replace issue τύποι', 'To remove workflows', 'To disable boards'],answer:0,why:'Integrations link work items to development and deployment artifacts.'},
         {q:'Before installing an app, check?', q_el: 'Before installing an app, έλεγξε?',options:['Security/maintenance/need','Only icon color','Whether it has animations','Nothing'],answer:0,why:'Apps have cost and operational impact.'}
       ]
     },
     { id:'admin-at-scale', title:'Admin at scale and governance', title_el: 'Διαχείριση σε κλίμακα και governance', level:'advanced', minutes:11, summary:'Keep Jira healthy as teams, projects, and customizations grow.', summary_el: 'Keep Jira healthy as ομάδες, projects, and customizations grow.', tags:['admin','governance','scale'],
       sections:[
         {t:'p',cls:'lead',text:'Jira at scale is a governance problem. Without owners and conventions, every team creates its own fields, statuses, and workflows.', text_el: 'Jira at scale is a governance πρόβλημα. Without owners and conventions, every ομάδα creates its own πεδία, statuses, and workflows.'},
-        {t:'list',checked:true,items:['Name and document schemes, custom fields, and automation rules.','Assign owners for fields, workflows, and apps.','Archive unused projects and fields where possible.','Use templates for common project types.','Review permission and notification schemes periodically.']},
+        {t:'list',checked:true,items: ['Name and document schemes, custom fields, and automation rules.','Assign owners for fields, workflows, and apps.','Archive unused projects and fields where possible.','Use templates for common project types.','Review permission and notification schemes periodically.'], items_el: ['Name and document schemes, custom πεδία, and automation rules.', 'Assign owners for πεδία, workflows, and apps.', 'Archive unused projects and πεδία where possible.', 'Χρησιμοποίησε templates for συνηθισμένο project τύποι.', 'Review permission and notification schemes periodically.']},
         {t:'code',lang:'text',title:'Governance checklist',code:`Owner: Who maintains this configuration?
 Purpose: What decision/process does it support?
 Scope: Which projects/teams use it?
@@ -89,8 +89,8 @@ Retire: When should it be removed?`},
       ],
       quiz:[
         {q:'What helps prevent Jira configuration sprawl?',options:['Ownership, conventions, and periodic review','Letting everyone create anything','Avoiding documentation','Never archiving projects'],answer:0,why:'Governance controls growth and complexity.'},
-        {q:'A custom field should have?', q_el: 'A custom πεδίο πρέπει να have?',options:['Owner and purpose','No name','Multiple duplicate copies','Random permissions'],answer:0,why:'Ownership and purpose support maintainability.'},
-        {q:'Governance is valuable because it?',options:['Prevents future cleanup and confusion','Eliminates all change','Replaces teams','Makes Jira optional'],answer:0,why:'It keeps systems usable as they scale.'}
+        {q:'A custom field should have?', q_el: 'A custom πεδίο πρέπει να have?',options: ['Owner and purpose','No name','Multiple duplicate copies','Random permissions'], options_el: ['Owner and purpose', 'No όνομα', 'Multiple duplicate copies', 'Random permissions'],answer:0,why:'Ownership and purpose support maintainability.'},
+        {q:'Governance is valuable because it?',options: ['Prevents future cleanup and confusion','Eliminates all change','Replaces teams','Makes Jira optional'], options_el: ['Prevents future cleanup and confusion', 'Eliminates όλα change', 'Replaces ομάδες', 'Makes Jira προαιρετικό'],answer:0,why:'It keeps systems usable as they scale.'}
       ]
     }
   ]
