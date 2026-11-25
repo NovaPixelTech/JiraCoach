@@ -97,78 +97,85 @@
   }
 
   /* ---------------- sections renderer ---------------- */
+  function pick(o,f){ return (RC.i18n&&RC.i18n.pick)?RC.i18n.pick(o,f):(o?o[f]:''); }
   function renderSections(sections) {
     var html = '', hCount = 0, toc = [];
     (sections || []).forEach(function (s) {
       if (!s || !s.t) {
-        if (s && s.text) html += '<p>' + inline(s.text) + '</p>';
+        var stx = s ? (pick(s,'text')||s.text) : '';
+        if (stx) html += '<p>' + inline(stx) + '</p>';
         return;
       }
+      var text = pick(s,'text') || s.text || '';
+      var title = pick(s,'title') || s.title || '';
+      var items = pick(s,'items') || s.items || [];
+      var head = pick(s,'head') || s.head || [];
+      var rows = pick(s,'rows') || s.rows || [];
       switch (s.t) {
         case 'h': {
           hCount++;
           var id = 'sec-' + hCount;
-          toc.push({ id: id, text: s.text });
+          toc.push({ id: id, text: text });
           html += '<h2 id="' + id + '"><span class="h-num">' + pad2(hCount) + '</span>' +
-            '<span>' + inline(s.text) + '</span></h2>';
+            '<span>' + inline(text) + '</span></h2>';
           break;
         }
         case 'p':
-          html += '<p' + (s.cls ? ' class="' + esc(s.cls) + '"' : '') + '>' + inline(s.text) + '</p>';
+          html += '<p' + (s.cls ? ' class="' + esc(s.cls) + '"' : '') + '>' + inline(text) + '</p>';
           break;
         case 'list': {
           if (s.checked) {
-            html += '<ul class="checklist">' + s.items.map(function (it) {
-              return '<li>' + inline(it) + '</li>';
+            html += '<ul class="checklist">' + items.map(function (it) {
+              return '<li>' + inline(typeof it==='string'?it:(pick(it,'text')||it.text||it)) + '</li>';
             }).join('') + '</ul>';
           } else {
             var tag = s.ordered ? 'ol' : 'ul';
-            html += '<' + tag + '>' + s.items.map(function (it) {
-              return '<li>' + inline(it) + '</li>';
+            html += '<' + tag + '>' + items.map(function (it) {
+              return '<li>' + inline(typeof it==='string'?it:(pick(it,'text')||it.text||it)) + '</li>';
             }).join('') + '</' + tag + '>';
           }
           break;
         }
         case 'code':
-          html += RC.code.codeBlock({ code: s.code, lang: s.lang, title: s.title });
+          html += RC.code.codeBlock({ code: s.code, lang: s.lang, title: title });
           break;
         case 'callout': {
           var tone = s.tone || 'info';
           var ico = tone === 'warn' ? '!' : tone === 'tip' ? '*' : tone === 'danger' ? 'x' : tone === 'why' ? '?' : 'i';
-          var title = s.title || ({ tip: 'Tip', warn: 'Watch out', danger: 'Danger', why: 'Why' }[tone] || 'Note');
+          var ct = title || ({ tip: t('Tip'), warn: t('Watch out'), danger: t('Danger'), why: t('Why') }[tone] || t('Note'));
           html += '<div class="callout ' + esc(tone) + '"><div class="c-ico">' + ico + '</div>' +
-            '<div class="c-body"><div class="c-title">' + esc(title) + '</div>' +
-            '<div>' + inline(s.text || '') + '</div></div></div>';
+            '<div class="c-body"><div class="c-title">' + esc(ct) + '</div>' +
+            '<div>' + inline(text) + '</div></div></div>';
           break;
         }
         case 'table': {
           html += '<div class="table-wrap"><table class="data"><thead><tr>' +
-            (s.head || []).map(function (h) { return '<th>' + inline(h) + '</th>'; }).join('') +
+            head.map(function (h) { return '<th>' + inline(h) + '</th>'; }).join('') +
             '</tr></thead><tbody>' +
-            (s.rows || []).map(function (r) {
-              return '<tr>' + r.map(function (c) { return '<td>' + inline(c) + '</td>'; }).join('') + '</tr>';
+            rows.map(function (r) {
+              return '<tr>' + (Array.isArray(r)?r:[r]).map(function (c) { return '<td>' + inline(c) + '</td>'; }).join('') + '</tr>';
             }).join('') + '</tbody></table></div>';
           break;
         }
         case 'steps': {
           html += '<div class="steps">' + items.map(function (it, i) {
             return '<div class="step"><div class="step-num">' + (i + 1) + '</div>' +
-              '<div><div class="step-title">' + inline(it.title) + '</div>' +
-              '<div class="step-body">' + inline(it.body) + '</div></div></div>';
+              '<div><div class="step-title">' + inline(pick(it,'title')||it.title) + '</div>' +
+              '<div class="step-body">' + inline(pick(it,'body')||it.body) + '</div></div></div>';
           }).join('') + '</div>';
           break;
         }
         case 'compare': {
           html += '<div class="compare">' + [s.left, s.right].map(function (col) {
             if (!col) return '';
-            return '<div class="compare-col"><h4>' + inline(col.title) + '</h4><ul>' +
+            return '<div class="compare-col"><h4>' + inline(pick(col,'title')||col.title) + '</h4><ul>' +
               (pick(col,'items')||col.items||[]).map(function (x) { return '<li>' + inline(typeof x==='string'?x:(pick(x,'text')||x.text||x)) + '</li>'; }).join('') +
               '</ul></div>';
           }).join('') + '</div>';
           break;
         }
         default:
-          if (s.text) html += '<p>' + inline(s.text) + '</p>';
+          if (text) html += '<p>' + inline(text) + '</p>';
       }
     });
     return { html: html, toc: toc };
