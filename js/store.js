@@ -69,7 +69,7 @@
     return {
       version: VERSION,
       profile: { name: '' },
-      settings: { theme: 'dark', dailyGoal: 10, codeHints: true, newPerDay: 12 },
+      settings: { theme: 'dark', dailyGoal: 10, codeHints: true, newPerDay: 12, lang: 'en' },
       lessons: {},
       cards: {},
       customCards: [],

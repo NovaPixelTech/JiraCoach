@@ -3,7 +3,7 @@
    ========================================================================== */
 (window.JIRA_COACH_CONTENT = window.JIRA_COACH_CONTENT || []).push({
   id: 'm5',
-  title: 'Advanced Jira',
+  title: 'Advanced Jira', title_el: 'Προχωρημένο Jira',
   tagline: 'Automation, permissions, notifications, and scale.',
   description: 'Go beyond basics: automate work safely, control access, design notifications, and manage Jira at team and org scale.',
   lessons: [

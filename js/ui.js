@@ -1,10 +1,11 @@
 ﻿/* ==========================================================================
-   Jira Coach â€” UI utilities
+   Jira Coach — UI utilities
    Shell, markdown-lite renderer, palette, modal, toast, copy.
    ========================================================================== */
 (function () {
   'use strict';
   var RC = (window.RC = window.RC || {});
+  var t = function(k,v){ return (RC.i18n&&RC.i18n.t)?RC.i18n.t(k,v):k; };
   var esc = RC.code.esc;
 
   /* ---------------- icons ---------------- */
@@ -52,13 +53,13 @@
   }
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
   function fmtDate(iso) {
-    if (!iso) return 'â€”';
+    if (!iso) return '—';
     var d = new Date(iso);
     if (isNaN(d)) return String(iso);
     return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
   }
   function relDay(key) {
-    if (!key) return 'â€”';
+    if (!key) return '—';
     var t = RC.dates.today();
     var diff = RC.dates.diffDays(key, t);
     if (diff === 0) return 'today';
@@ -133,7 +134,7 @@
           break;
         case 'callout': {
           var tone = s.tone || 'info';
-          var ico = tone === 'warn' ? '!' : tone === 'tip' ? 'âœ¦' : tone === 'danger' ? 'Ã—' : tone === 'why' ? '?' : 'i';
+          var ico = tone === 'warn' ? '!' : tone === 'tip' ? '✦' : tone === 'danger' ? '×' : tone === 'why' ? '?' : 'i';
           var title = s.title || ({ tip: 'Tip', warn: 'Watch out', danger: 'Danger', why: 'Why' }[tone] || 'Note');
           html += '<div class="callout ' + esc(tone) + '"><div class="c-ico">' + ico + '</div>' +
             '<div class="c-body"><div class="c-title">' + esc(title) + '</div>' +
@@ -193,7 +194,7 @@
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); toast(okMsg || 'Copied to clipboard'); }
-      catch (e) { toast('Could not copy â€” select it manually'); }
+      catch (e) { toast('Could not copy — select it manually'); }
       document.body.removeChild(ta);
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -261,16 +262,16 @@
 
   /* ---------------- shell ---------------- */
   var NAV_MAIN = [
-    { route: 'home', label: 'Dashboard', icon: 'home' },
-    { route: 'learn', label: 'Learn', icon: 'book' },
-    { route: 'practice', label: 'Practice', icon: 'cards', badge: 'due' },
-    { route: 'lab', label: 'Lab', icon: 'lab' }
+    { route: 'home', label: t('Dashboard'), icon: 'home' },
+    { route: 'learn', label: t('Learn'), icon: 'book' },
+    { route: 'practice', label: t('Practice'), icon: 'cards', badge: 'due' },
+    { route: 'lab', label: t('Lab'), icon: 'lab' }
   ];
   var NAV_LIB = [
-    { route: 'examples', label: 'My examples', icon: 'folder', badge: 'examples' },
-    { route: 'reference', label: 'Reference', icon: 'openbook' },
+    { route: 'examples', label: t('My examples'), icon: 'folder', badge: 'examples' },
+    { route: 'reference', label: t('Reference'), icon: 'openbook' },
     { route: 'troubleshoot', label: 'Troubleshooting', icon: 'lifebuoy' },
-    { route: 'settings', label: 'Settings', icon: 'gear' }
+    { route: 'settings', label: t(t('Settings')), icon: 'gear' }
   ];
 
   function navItem(item, active) {
@@ -318,7 +319,7 @@
       (due > 0
         ? '<a class="side-block" href="#/practice" style="margin-bottom:9px;text-decoration:none">' +
           '<div class="side-block-head"><span>Due today</span><span class="badge accent">' + due + '</span></div>' +
-          '<strong>' + (due === 1 ? '1 card to review' : due + ' cards to review') + '</strong>' +
+          '<strong>' + (due === 1 ? '1 ' + t('cards due') : due + ' ' + t('cards due')) + '</strong>' +
           '<div class="side-block-head"><span>Goal ' + goal + '/day</span><span class="mono">' +
           Math.min(100, Math.round((todayReviews / goal) * 100)) + '%</span></div>' +
           progress(Math.min(100, (todayReviews / goal) * 100), 'sm') +
@@ -326,7 +327,7 @@
         : '') +
       upNext +
       '<div class="side-block-head" style="padding:12px 8px 0;font-size:11px;color:var(--muted-2)">' +
-      '<span>' + (st.profile.name ? esc(st.profile.name) : 'Local-first Â· no account') + '</span>' +
+      '<span>' + (st.profile.name ? esc(st.profile.name) : t('Local-first · no account')) + '</span>' +
       '<span class="mono">v1</span></div>' +
       '</div>';
   }
@@ -346,12 +347,12 @@
       '</div>' +
       '<div class="topbar-actions">' +
       '<button class="search-trigger" type="button" id="searchBtn" aria-label="Search everything (Ctrl+K)">' +
-      icon('search') + '<span class="st-label">Search or jump toâ€¦</span>' +
+      icon('search') + '<span class="st-label">Search or jump to…</span>' +
       '<span class="kbd-wrap"><kbd>Ctrl</kbd><kbd>K</kbd></span></button>' +
       '<span class="streak-pill" title="Study streak">' + icon('flame', '') +
       '<b>' + streak + '</b><span>day' + (streak === 1 ? '' : 's') + '</span></span>' +
       '<button class="icon-btn" type="button" id="themeBtn" aria-label="Toggle light/dark theme">' + icon(theme) + '</button>' +
-      '<a class="avatar" href="#/settings" title="' + esc(st.profile.name || 'Settings') + '" aria-label="Settings">' +
+      '<a class="avatar" href="#/settings" title="' + esc(st.profile.name || t('Settings')) + '" aria-label="'+t('Settings')+'">' +
       esc(initials(st.profile.name)) + '</a>' +
       '</div>';
   }
@@ -470,7 +471,7 @@
         lastGroup = it.kind;
       }
       html += '<button class="p-result' + (idx === paletteState.sel ? ' sel' : '') + '" type="button" role="option" aria-selected="' + (idx === paletteState.sel) + '" data-idx="' + idx + '">' +
-        '<span class="p-ico">' + (it.icon || 'â€º') + '</span>' +
+        '<span class="p-ico">' + (it.icon || '>') + '</span>' +
         '<span class="p-body"><span class="p-title">' + esc(it.title) + '</span>' +
         '<span class="p-sub">' + esc(it.sub || '') + '</span></span>' +
         '<span class="p-kind">' + esc(it.tag || '') + '</span></button>';
@@ -565,4 +566,5 @@
     download: download
   };
 })();
+
 

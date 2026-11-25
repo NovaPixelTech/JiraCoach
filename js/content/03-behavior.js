@@ -3,7 +3,7 @@
    ========================================================================== */
 (window.JIRA_COACH_CONTENT = window.JIRA_COACH_CONTENT || []).push({
   id: 'm3',
-  title: 'Workflows',
+  title: 'Workflows', title_el: 'Workflows',
   tagline: 'Design statuses and transitions that reflect real work.',
   description: 'Learn how to build workflows with clear statuses, transitions, conditions, validators, post functions, and board mappings.',
   lessons: [

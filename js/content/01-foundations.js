@@ -3,8 +3,8 @@
    ========================================================================== */
 (window.JIRA_COACH_CONTENT = window.JIRA_COACH_CONTENT || []).push({
   id: 'm1',
-  title: 'Foundations',
-  tagline: 'What Jira is, how work flows, and why teams use it.',
+  title: 'Foundations', title_el: 'Βασικές αρχές',
+  tagline: 'What Jira is, how work flows, and why teams use it.', tagline_el: 'Τι είναι το Jira, πώς ρέει η εργασία και γιατί το χρησιμοποιούν οι ομάδες.',
   description: 'Build the mental model: projects, work items, issue types, workflows, and how a request moves from idea to done.',
   lessons: [
     {

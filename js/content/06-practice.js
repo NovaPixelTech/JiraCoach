@@ -3,7 +3,7 @@
    ========================================================================== */
 (window.JIRA_COACH_CONTENT = window.JIRA_COACH_CONTENT || []).push({
   id: 'm6',
-  title: 'Practice & troubleshooting',
+  title: 'Practice & troubleshooting', title_el: 'Εξάσκηση & αντιμετώπιση προβλημάτων',
   tagline: 'Apply Jira skills to real project setup and common problems.',
   description: 'Practice building clean Jira setups, diagnosing common issues, and using checklists for governance and quality.',
   lessons: [

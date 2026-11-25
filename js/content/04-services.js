@@ -3,7 +3,7 @@
    ========================================================================== */
 (window.JIRA_COACH_CONTENT = window.JIRA_COACH_CONTENT || []).push({
   id: 'm4',
-  title: 'Boards & JQL',
+  title: 'Boards & JQL', title_el: 'Boards & JQL',
   tagline: 'See, plan, and query work with boards, filters, and JQL.',
   description: 'Learn Scrum and Kanban boards, filters, JQL, dashboards, and reports so teams can find and manage work effectively.',
   lessons: [

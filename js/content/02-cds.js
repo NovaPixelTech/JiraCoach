@@ -3,7 +3,7 @@
    ========================================================================== */
 (window.JIRA_COACH_CONTENT = window.JIRA_COACH_CONTENT || []).push({
   id: 'm2',
-  title: 'Work items & fields',
+  title: 'Work items & fields', title_el: 'Work items & πεδία',
   tagline: 'Model work clearly with the right issue types, fields, and screens.',
   description: 'Learn how to capture useful information without creating Jira clutter: issue types, fields, screens, priorities, and relationships.',
   lessons: [
