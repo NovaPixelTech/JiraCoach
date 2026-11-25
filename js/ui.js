@@ -1,11 +1,11 @@
-/* ==========================================================================
-   Jira Coach — UI utilities
+﻿/* ==========================================================================
+   Jira Coach â€” UI utilities
    Shell, markdown-lite renderer, palette, modal, toast, copy.
    ========================================================================== */
 (function () {
   'use strict';
   var RC = (window.RC = window.RC || {});
-  var esc = RC.code.escape;
+  var esc = RC.code.esc;
 
   /* ---------------- icons ---------------- */
   var PATHS = {
@@ -52,13 +52,13 @@
   }
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
   function fmtDate(iso) {
-    if (!iso) return '—';
+    if (!iso) return 'â€”';
     var d = new Date(iso);
     if (isNaN(d)) return String(iso);
     return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
   }
   function relDay(key) {
-    if (!key) return '—';
+    if (!key) return 'â€”';
     var t = RC.dates.today();
     var diff = RC.dates.diffDays(key, t);
     if (diff === 0) return 'today';
@@ -89,7 +89,7 @@
       (label ? '<div class="ring-label">' + label + '</div>' : '');
   }
   function empty(opts) {
-    return '<div class="empty"><div class="e-ico">' + (opts.icon || '◇') + '</div>' +
+    return '<div class="empty"><div class="e-ico">' + (opts.icon || 'â—‡') + '</div>' +
       '<h3>' + esc(opts.title || 'Nothing here yet') + '</h3>' +
       '<p>' + inline(opts.text || '') + '</p>' +
       (opts.action || '') + '</div>';
@@ -133,7 +133,7 @@
           break;
         case 'callout': {
           var tone = s.tone || 'info';
-          var ico = tone === 'warn' ? '!' : tone === 'tip' ? '✦' : tone === 'danger' ? '×' : tone === 'why' ? '?' : 'i';
+          var ico = tone === 'warn' ? '!' : tone === 'tip' ? 'âœ¦' : tone === 'danger' ? 'Ã—' : tone === 'why' ? '?' : 'i';
           var title = s.title || ({ tip: 'Tip', warn: 'Watch out', danger: 'Danger', why: 'Why' }[tone] || 'Note');
           html += '<div class="callout ' + esc(tone) + '"><div class="c-ico">' + ico + '</div>' +
             '<div class="c-body"><div class="c-title">' + esc(title) + '</div>' +
@@ -193,7 +193,7 @@
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); toast(okMsg || 'Copied to clipboard'); }
-      catch (e) { toast('Could not copy — select it manually'); }
+      catch (e) { toast('Could not copy â€” select it manually'); }
       document.body.removeChild(ta);
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -326,7 +326,7 @@
         : '') +
       upNext +
       '<div class="side-block-head" style="padding:12px 8px 0;font-size:11px;color:var(--muted-2)">' +
-      '<span>' + (st.profile.name ? esc(st.profile.name) : 'Local-first · no account') + '</span>' +
+      '<span>' + (st.profile.name ? esc(st.profile.name) : 'Local-first Â· no account') + '</span>' +
       '<span class="mono">v1</span></div>' +
       '</div>';
   }
@@ -346,7 +346,7 @@
       '</div>' +
       '<div class="topbar-actions">' +
       '<button class="search-trigger" type="button" id="searchBtn" aria-label="Search everything (Ctrl+K)">' +
-      icon('search') + '<span class="st-label">Search or jump to…</span>' +
+      icon('search') + '<span class="st-label">Search or jump toâ€¦</span>' +
       '<span class="kbd-wrap"><kbd>Ctrl</kbd><kbd>K</kbd></span></button>' +
       '<span class="streak-pill" title="Study streak">' + icon('flame', '') +
       '<b>' + streak + '</b><span>day' + (streak === 1 ? '' : 's') + '</span></span>' +
@@ -470,7 +470,7 @@
         lastGroup = it.kind;
       }
       html += '<button class="p-result' + (idx === paletteState.sel ? ' sel' : '') + '" type="button" role="option" aria-selected="' + (idx === paletteState.sel) + '" data-idx="' + idx + '">' +
-        '<span class="p-ico">' + (it.icon || '›') + '</span>' +
+        '<span class="p-ico">' + (it.icon || 'â€º') + '</span>' +
         '<span class="p-body"><span class="p-title">' + esc(it.title) + '</span>' +
         '<span class="p-sub">' + esc(it.sub || '') + '</span></span>' +
         '<span class="p-kind">' + esc(it.tag || '') + '</span></button>';
@@ -565,3 +565,4 @@
     download: download
   };
 })();
+

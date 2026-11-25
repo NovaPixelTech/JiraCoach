@@ -42,9 +42,9 @@
   }
 
   function bindTabs(root, storageKey, refresh) {
-    var wJira = root.querySelector('[data-tabs]');
-    if (!wJira) return;
-    wJira.addEventListener('click', function (e) {
+    var wrap = root.querySelector('[data-tabs]');
+    if (!wrap) return;
+    wrap.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-tab]');
       if (!btn) return;
       RC.views[storageKey] = btn.getAttribute('data-tab');
@@ -152,7 +152,7 @@
           '</div>' +
         '</div>' +
         '<div class="hero-side">' +
-          '<div class="ring-wJira">' + RC.ui.ring(p.pct, '<b>' + p.done + ' of ' + p.total + ' lessons</b>complete') + '</div>' +
+          '<div class="ring-wrap">' + RC.ui.ring(p.pct, '<b>' + p.done + ' of ' + p.total + ' lessons</b>complete') + '</div>' +
           '<div class="grid grid-2">' +
             '<div class="stat"><span class="stat-value">' + streak + '</span><span class="stat-label">day streak</span></div>' +
             '<div class="stat"><span class="stat-value">' + cards.due + '</span><span class="stat-label">cards due</span></div>' +
@@ -293,7 +293,7 @@
             '<span class="l-right">' +
               (st.quizBest != null ? '<span class="quiz-score">' + st.quizBest + '%</span>' : '') +
               levelBadge(l.level) +
-              '<span class="tiny muted nowJira">' + minutes(l.minutes) + '</span>' +
+              '<span class="tiny muted nowrap">' + minutes(l.minutes) + '</span>' +
             '</span></a>';
         }).join('') + '</div></div>';
     });
@@ -454,7 +454,7 @@
     var title = mix ? 'Mixed quiz Â· 12 questions' : 'Quiz Â· ' + lesson.title;
 
     var html =
-      '<div class="quiz-wJira">' +
+      '<div class="quiz-wrap">' +
         '<div class="practice-top">' +
           '<a class="btn btn-ghost btn-sm" href="' + (mix ? '#/practice' : '#/lesson/' + attr(lesson.id)) + '">â† Exit quiz</a>' +
           '<span class="muted tiny">' + esc(mix ? 'Questions from every module' : lesson.moduleTitle) + '</span>' +
@@ -685,7 +685,7 @@
     var revealed = false;
     var reviewed = 0;
 
-    body.innerHTML = '<div class="flash-wJira"><div id="flashStage"></div></div>';
+    body.innerHTML = '<div class="flash-wrap"><div id="flashStage"></div></div>';
     var stage = id('flashStage');
 
     function emptyStage(message, allowAll) {
@@ -1184,7 +1184,7 @@
           (ex.code ? RC.code.codeBlock({ code: ex.code, lang: 'Jira', title: ex.title }) : '<div class="empty"><h3>No code saved</h3><p>Edit this example and paste the code you want to remember.</p></div>') +
           '<h2 class="sec-title">Why it works</h2>' +
           (ex.notes
-            ? '<div class="prose" style="white-space:pre-wJira">' + inline(ex.notes) + '</div>'
+            ? '<div class="prose" style="white-space:pre-wrap">' + inline(ex.notes) + '</div>'
             : '<div class="callout warn"><div class="c-ico">!</div><div class="c-body"><div class="c-title">Write the note</div>Two or three sentences about the structure, the key statement and why it works. That is what makes the example learnable.</div></div>') +
         '</div>' +
         '<aside class="lesson-aside">' +
