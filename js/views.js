@@ -104,7 +104,7 @@
     var goal = st.settings.dailyGoal || 10;
     var doneToday = num(act.reviews) + num(act.quizzes) + num(act.lessons);
 
-    var hello = st.profile.name ? ('Welcome back, ' + st.profile.name.split(/\s+/)[0] + '.') : 'Welcome back.';
+    var hello = st.profile.name ? t('Welcome back, {name}.', {name: st.profile.name.split(/\s+/)[0]}) : t('Welcome back.');
 
     /* week chart */
     var days = [];
@@ -125,7 +125,7 @@
     if (next) {
       nextCard = '<a class="next-card" href="#/lesson/' + attr(next.id) + '" style="text-decoration:none;color:inherit">' +
         '<div class="card-icon" style="width:44px;height:44px;font-size:18px">' + icon('play') + '</div>' +
-        '<div class="nc-body"><div class="card-kicker">' + (p.done === p.total ? 'Revisit the weakest area' : t('Up next')) + '</div>' +
+        '<div class="nc-body"><div class="card-kicker">' + (p.done === p.total ? 'Revisit the weakest area' : t(t('Up next'))) + '</div>' +
         '<div class="nc-title">' + esc(next.title) + '</div>' +
         '<div class="nc-sub">' + esc(next.moduleTitle) + ' · ' + minutes(next.minutes) + ' · ' + esc(next.summary) + '</div></div>' +
         '<span class="btn btn-primary btn-sm">' + (p.done === p.total ? 'Review' : 'Continue') + '</span></a>';
@@ -144,8 +144,8 @@
     var html =
       '<div class="hero">' +
         '<div>' +
-          '<div class="eyebrow">Atlassian Jira · local-first trainer</div>' +
-          '<h1>' + esc(hello) + ' Build the mental model, then build the BO.</h1>' +
+          '<div class="eyebrow">Atlassian Jira · ' + t('Local-first · no account') + '</div>' +
+          '<h1>' + esc(hello) + ' ' + esc(t('Learn Jira from the ground up')) + '</h1>' +
           '<p>Twenty-seven short lessons, spaced-repetition cards, quizzes, a Jira project scaffolder and a place for your own examples. Everything is stored in this browser.</p>' +
           '<div class="page-actions">' +
             (next ? '<a class="btn btn-primary" href="#/lesson/' + attr(next.id) + '">' + icon('play') + ' Continue studying</a>' : '') +
@@ -468,9 +468,9 @@
 
     return {
       html: html,
-      meta: meta('learn', mix ? t('Mixed quiz') : 'Quiz', [
+      meta: meta('learn', mix ? t(t('Mixed quiz')) : 'Quiz', [
         { label: 'Learn', href: '#/learn' },
-        { label: mix ? t('Mixed quiz') : lesson.title, href: mix ? '#/quiz/mix' : '#/lesson/' + lesson.id },
+        { label: mix ? t(t('Mixed quiz')) : lesson.title, href: mix ? '#/quiz/mix' : '#/lesson/' + lesson.id },
         { label: 'Quiz' }
       ]),
       mount: function () {
@@ -532,7 +532,7 @@
             '<div class="quiz-foot">' +
               '<span class="tiny muted">' + (answered ? (idx === questions.length - 1 ? 'Last question — finish when ready.' : 'Ready for the next one?') : 'Pick one answer. Keyboard: 1–4.') + '</span>' +
               '<span class="spacer"></span>' +
-              (answered ? '<button class="btn btn-primary" type="button" id="quizNext">' + (idx === questions.length - 1 ? 'See result' : t('Next question')) + '</button>' : '') +
+              (answered ? '<button class="btn btn-primary" type="button" id="quizNext">' + (idx === questions.length - 1 ? 'See result' : t(t('Next question'))) + '</button>' : '') +
             '</div>';
 
           body.querySelectorAll('[data-opt]').forEach(function (b) {
@@ -631,7 +631,7 @@
       tabsHtml('Practice', [
         { id: 'cards', label: 'Flashcards', n: stats.due },
         { id: 'quiz', label: 'Quiz' },
-        { id: 'my', label: t('My cards'), n: RC.store.state.customCards.length }
+        { id: 'my', label: t(t('My cards')), n: RC.store.state.customCards.length }
       ], tab) +
       '<div id="practiceBody"></div>';
 
@@ -670,7 +670,7 @@
       (log.length
         ? '<div class="lesson-list">' + log.map(function (q) {
           var l = RC.content.lesson(q.lesson);
-          var label = l ? l.title : t('Mixed quiz');
+          var label = l ? l.title : t(t('Mixed quiz'));
           var href = l ? '#/lesson/' + attr(l.id) : '#/quiz/mix';
           return '<a class="lesson-row" href="' + href + '"><span class="dot" style="color:transparent;border-color:var(--line)">·</span>' +
             '<span class="l-main"><span class="l-title">' + esc(label) + '</span>' +
@@ -901,8 +901,8 @@
       sub: 'Generate a consistent Jira setup starter from a short description, or paste config and let the heuristic doctor look for common Jira mistakes.',
       actions: '<a class="btn btn-ghost" href="#/reference">' + icon('openbook') + ' Reference</a>'
     }) + tabsHtml('Lab', [
-      { id: 'gen', label: t('Jira scaffolder') },
-      { id: 'doctor', label: t('Code doctor') }
+      { id: 'gen', label: t(t('Jira scaffolder')) },
+      { id: 'doctor', label: t(t('Code doctor')) }
     ], tab) + '<div id="labBody"></div>';
 
     return {
@@ -1065,7 +1065,7 @@
               '<button class="btn btn-sm" type="button" data-sample="1">JQL</button></div>' +
           '</div>' +
         '</div>' +
-        '<div id="lintOut">' + RC.ui.empty({ icon: 'âš•', title: 'Nothing checked yet', text: 'Paste Jira config, then run the doctor. It is heuristic — it catches common mistakes, not everything.' }) + '</div>' +
+        '<div id="lintOut">' + RC.ui.empty({ icon: 'âš•', title: t('Nothing checked yet'), text: 'Paste Jira config, then run the doctor. It is heuristic — it catches common mistakes, not everything.' }) + '</div>' +
       '</div>';
 
     var src = id('lintSrc');
@@ -1075,7 +1075,7 @@
       var code = src.value;
       RC.views.doctorSrc = code;
       if (!code.trim()) {
-        out.innerHTML = RC.ui.empty({ icon: 'âš•', title: 'Paste some config first', text: 'The doctor needs workflow text, JQL, an automation rule, or permission notes.' });
+        out.innerHTML = RC.ui.empty({ icon: 'âš•', title: t('Paste some config first'), text: 'The doctor needs workflow text, JQL, an automation rule, or permission notes.' });
         return;
       }
       var results = RC.code.lint(code);
@@ -1642,6 +1642,7 @@
   RC.views.settings = settings;
   RC.views.notFound = notFound;
 })();
+
 
 
 

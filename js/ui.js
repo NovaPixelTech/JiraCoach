@@ -270,8 +270,8 @@
   var NAV_LIB = [
     { route: 'examples', label: t('My examples'), icon: 'folder', badge: 'examples' },
     { route: 'reference', label: t('Reference'), icon: 'openbook' },
-    { route: 'troubleshoot', label: 'Troubleshooting', icon: 'lifebuoy' },
-    { route: 'settings', label: t(t('Settings')), icon: 'gear' }
+    { route: 'troubleshoot', label: t('Troubleshoot'), icon: 'lifebuoy' },
+    { route: 'settings', label: t('Settings'), icon: 'gear' }
   ];
 
   function navItem(item, active) {
